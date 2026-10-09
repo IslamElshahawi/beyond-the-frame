@@ -39,20 +39,21 @@ html[lang=ar] body{font-family:var(--f-ar)}
 .mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 html[lang=ar] .mono{font-family:var(--f-ar);letter-spacing:0;font-size:12px}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .ch{display:inline-block;white-space:pre}
 .wd{display:inline-block;white-space:nowrap}
 
 /* nav */
-.nav{position:fixed;left:0;right:0;top:0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:start;padding:calc(env(safe-area-inset-top,0px) + 22px) clamp(16px,3vw,40px) 0;pointer-events:none}
+.nav{position:fixed;left:0;right:0;top:0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 22px) clamp(16px,3vw,40px) 0;pointer-events:none}
 .nav .l{font-size:12.5px;line-height:1.35}.nav .l span{opacity:.6}
 .nav .c{font:800 14px var(--f-display);letter-spacing:.06em;text-transform:uppercase;text-align:center}
 html[lang=ar] .nav .c{font-family:var(--f-ar)}
 .nav .r{display:flex;justify-content:flex-end;gap:clamp(12px,2vw,26px);font-size:12.5px}
-.nav button{pointer-events:auto;padding:4px 0;opacity:.85}.nav button:hover{opacity:1}
+.nav button{pointer-events:auto;padding:0;line-height:1.2;opacity:.85}
+.nav .c,.nav .l,.nav .r{line-height:1.2}.nav .r{align-items:center}.nav button:hover{opacity:1}
 .nav .ar{font-family:var(--f-ar)}
 @media (max-width:760px){.nav{grid-template-columns:1fr auto;padding-top:calc(env(safe-area-inset-top,0px) + 16px)}.nav .l{display:none}.nav .c{text-align:left;font-size:13px}.nav .r{gap:16px;font-size:13px}
-  #navMotion{font-size:0;width:20px}#navMotion:before{content:'';display:inline-block;width:14px;height:14px;border-radius:50%;border:1.5px solid currentColor;background:linear-gradient(90deg,currentColor 50%,transparent 50%);vertical-align:middle}
   html[dir=rtl] .nav .c{text-align:right}}
 
 /* hero */
@@ -144,11 +145,34 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
 @media (max-width:760px){.sk-list{display:none}.sk-h{top:calc(env(safe-area-inset-top,0px) + 9vh)}.sk-h h2{font-size:clamp(34px,10vw,48px)}.sk-d{max-width:none;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 5vh)}html[dir=rtl] .sk-d{left:16px}.sk-tools{display:none}
   .sk-now{display:block;font:800 22px/1.15 var(--f-display);color:var(--paper)}html[lang=ar] .sk-now{font-family:var(--f-ar)}}
 
+/* phone slider */
+.carinfo{display:none}
+@media (max-width:760px){
+ .wallui h2{top:calc(env(safe-area-inset-top,0px) + 11vh)}
+ .chips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding:0 16px 2px;bottom:calc(env(safe-area-inset-bottom,0px) + 3.5vh);-webkit-mask:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent)}
+ .chips::-webkit-scrollbar{display:none}.chips button{flex:none}
+ .carinfo{display:grid;justify-items:center;gap:6px;position:absolute;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 3.5vh + 52px);text-align:center}
+ .carinfo .ctitle{font:900 clamp(24px,7vw,32px)/1 var(--f-display);letter-spacing:-.02em}
+ html[lang=ar] .carinfo .ctitle{font-family:var(--f-ar);letter-spacing:0}
+ .carinfo .cnt{color:var(--gold)}
+ .carinfo .btn{margin-top:6px;padding:11px 18px}
+}
+
 /* close */
 .cta{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:8;padding:0 16px}
 .cta div{font:900 clamp(38px,6vw,100px)/1 var(--f-display);letter-spacing:-.03em}
 .cta .g{color:var(--gold)}
-.cta .btns{justify-content:center;margin-top:30px}
+.contact{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:10px;width:min(920px,100%);margin:34px auto 0;text-align:start}
+.cc{display:flex;align-items:center;gap:12px;min-width:0;padding:12px 14px 12px 12px;border-radius:18px;background:rgba(243,239,231,.06);border:1px solid rgba(243,239,231,.16);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);pointer-events:auto;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,background .3s}
+.cc:hover,.cc:focus-visible{transform:translateY(-3px);border-color:var(--gold);background:rgba(243,239,231,.1)}
+.cc .ic{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(243,239,231,.1);color:var(--paper)}
+.cc.main .ic{background:var(--gold);color:var(--ink)}
+.cc .tx{display:grid;min-width:0;gap:2px}
+.cc b{font:700 14.5px/1.2 var(--f-body)}
+html[lang=ar] .cc b{font-family:var(--f-ar)}
+.cc .tx span{font:500 11.5px/1.3 var(--f-mono);color:var(--dim);overflow-wrap:anywhere}
+html[dir=rtl] .cc .tx span{text-align:right}
+@media (max-width:760px){.contact{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:26px}.cc{padding:10px;gap:10px;border-radius:15px}.cc .ic{width:36px;height:36px;border-radius:11px}.cc b{font-size:13.5px}.cc .tx span{font-size:10.5px}}
 .cta .ct{margin-top:20px;color:#cfc9be;font-size:14px;user-select:text;pointer-events:auto}
 .cta .btn svg{flex:none}
 .foot{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);text-align:center;z-index:8;color:#bdb7ac}
@@ -203,7 +227,6 @@ html[lang=ar] #th aside .k{font-family:var(--f-ar);letter-spacing:0;font-size:12
   <nav class="r" aria-label="Site">
     <button type="button" id="navFilms"></button>
     <button type="button" id="navContact"></button>
-    <button type="button" id="navMotion"></button>
     <button type="button" id="navLang" class="ar"></button>
   </nav>
 </header>
@@ -239,7 +262,7 @@ html[lang=ar] #th aside .k{font-family:var(--f-ar);letter-spacing:0;font-size:12
    reads them, so swapping a film or a preview never touches the motion.
    ===================================================================== */
 const CONFIG={name:{en:'Islam Elshahawi',ar:'إسلام الشهاوي'},
-  contact:{whatsapp:'+201098687643', email:'islamelshahawi@gmail.com', mostaql:'https://mostaql.com/u/islam_elshahawi'}};
+  contact:{whatsapp:'+201098687643', email:'islamelshahawi@gmail.com', linkedin:'https://www.linkedin.com/in/islam_elshahawi', mostaql:'https://mostaql.com/u/islam_elshahawi'}};
 const FILMS={
  campaign_full_01:{kind:'concept',frame:'campaign_full_01_2',
   title:{en:'Welcome to the Future',ar:'مرحبًا بالمستقبل'},credit:{en:'Creative-AI internship · I led the team',ar:'برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق'},
@@ -339,19 +362,20 @@ const T={
   st:['Every image ever made','began as light','in a dark room.'],brief:'Brief',idea:'Idea',role2:'My role',more:'More films',prev:'← Previous',next:'Next →',
   wall:'Watch everything.',f:{all:'All 11',brand:'Brand films',ugc:'AI UGC',presenter:'AI presenters',concept:'Concepts'},
   skS:'What I do on every film',skH:'The craft',seen:'Seen in',tools:'Tools: DaVinci Resolve · AI image and video generation',
-  c1:'There’s more to be seen.',c2:'Let’s make it.',wa:'WhatsApp',em:'Email',mq:'Mostaql',ct:'Contact details coming soon.',foot:'AI film director · Beyond the Frame',skip:'Skip to all films'},
+  c1:'There’s more to be seen.',c2:'Let’s make it.',wa:'WhatsApp',em:'Email',li:'LinkedIn',mq:'Mostaql',ct:'Contact details coming soon.',foot:'AI film director · Beyond the Frame',skip:'Skip to all films'},
  ar:{role:'مخرج أفلام بالذكاء الاصطناعي',films:'الأعمال',contact:'تواصل',motionOn:'الحركة: تعمل',motionOff:'الحركة: متوقفة',lang:'EN',
   heroCredit:'حملة برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق',heroTitle:'مرحبًا بالمستقبل',watch:'شاهد الفيلم',all:'كل الأفلام (١١)',sFilms:'فيلمًا',sBrands:'علامات خليجية',hint:'مرّر لفتح الإطار',
   st:['كل صورة صُنعت يومًا','بدأت بضوء','في غرفة مظلمة.'],brief:'الموجز',idea:'الفكرة',role2:'دوري',more:'أفلام أخرى',prev:'→ السابق',next:'التالي ←',
   wall:'شاهد كل شيء.',f:{all:'الكل',brand:'أفلام العلامات',ugc:'UGC بالذكاء الاصطناعي',presenter:'مقدّمون',concept:'أفكار'},
   skS:'ما أقوم به في كل فيلم',skH:'الحرفة',seen:'في فيلم',tools:'الأدوات: دافنشي ريزولف · توليد الصور والفيديو بالذكاء الاصطناعي',
-  c1:'هناك المزيد لنراه.',c2:'لنصنعه معًا.',wa:'واتساب',em:'البريد',mq:'مستقل',ct:'بيانات التواصل قريبًا.',foot:'مخرج أفلام بالذكاء الاصطناعي · ما وراء الإطار',skip:'انتقل إلى كل الأفلام'}
+  c1:'هناك المزيد لنراه.',c2:'لنصنعه معًا.',wa:'واتساب',em:'البريد',li:'لينكدإن',mq:'مستقل',ct:'بيانات التواصل قريبًا.',foot:'مخرج أفلام بالذكاء الاصطناعي · ما وراء الإطار',skip:'انتقل إلى كل الأفلام'}
 };
 
 /* line icons, drawn in the site's own stroke */
 const ICON={
  wa:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20.5 11.6a8.6 8.6 0 0 1-12.7 7.5L3.5 20.4l1.3-4.1a8.6 8.6 0 1 1 15.7-4.7z"/><path d="M9.2 8.4c.4-.6.9-.6 1.2 0l.6 1.4c.1.3 0 .6-.2.8l-.5.5c.6 1.3 1.6 2.3 2.9 2.9l.5-.5c.2-.2.5-.3.8-.2l1.4.6c.6.3.6.8 0 1.2-.7.5-1.6.7-2.4.4-2.3-.9-4.1-2.7-5-5-.3-.8-.1-1.7.7-2.1z" fill="currentColor" stroke="none"/></svg>',
  em:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.8 6.8 12 13l8.2-6.2"/></svg>',
+ li:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V17M8 7.2v.1M12 17v-6.5M12 13.4c0-1.7 1-2.9 2.4-2.9s2.1 1 2.1 2.6V17"/></svg>',
  mq:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12.5" rx="2.5"/><path d="M8.5 7.5V5.8c0-.7.6-1.3 1.3-1.3h4.4c.7 0 1.3.6 1.3 1.3v1.7M3 12.5h18M12 11.5v2"/></svg>'
 };
 /* ===================== kit ===================== */
@@ -368,7 +392,7 @@ let LANG='en';try{const l=localStorage.getItem('btf-lang');if(l==='ar'||l==='en'
 const t_=k=>T[LANG][k];const L=o=>o[LANG]||o.en;
 let MOTION=true;try{const q=new URLSearchParams(location.search);const st=localStorage.getItem('btf-motion');
   /* motion is the point of this site, so it defaults on; the nav toggle turns it off and is remembered */
-  MOTION=q.get('motion')==='0'?false:q.get('motion')==='1'?true:st!==null?st==='1':true}catch(e){}
+  MOTION=q.get('motion')!=='0'}catch(e){}
 let M=MOTION?1:.18;
 
 /* letters: per character for Latin (the grey→white light-up), per word for Arabic so letters stay joined */
@@ -491,7 +515,7 @@ const ui=$('ui');let SKUI,HERO,STM,ERA_UI=[],FILM_UI=[],WALL_UI,CTA,RAIL,HINT,FO
 function buildUI(){
   ui.innerHTML='';document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
   $('navL').textContent=t_('role');$('navName').textContent=L(CONFIG.name);document.title=L(CONFIG.name)+' · '+t_('role');
-  $('navFilms').textContent=t_('films');$('navContact').textContent=t_('contact');$('navMotion').textContent=MOTION?t_('motionOn'):t_('motionOff');$('navLang').textContent=t_('lang');$('skip').textContent=t_('skip');
+  $('navFilms').textContent=t_('films');$('navContact').textContent=t_('contact');$('navLang').textContent=t_('lang');$('skip').textContent=t_('skip');
   /* hero */
   const h=el('section','hero ui',ui);h.setAttribute('aria-label',t_('heroTitle'));el('div','shade',h);
   const lt=el('div','lt',h);const cr=el('div','cr',lt,t_('heroCredit'));const bg=el('h1','big',lt);const hs=letters(bg,t_('heroTitle'));
@@ -512,8 +536,12 @@ function buildUI(){
     const cs=el('div','case ui',ui,`<div><span>${t_('brief')}</span>${L(F.brief)}</div><div><span>${t_('role2')}</span>${L(F.role)}</div>`);return{fb,cr,sp,pl,cs}});
   /* wall */
   const wu=el('section','wallui ui',ui);const wh=el('h2','',wu);const wsp=letters(wh,t_('wall'));const ch=el('div','chips',wu);
-  const chips=['all','brand','ugc','presenter','concept'].map(k=>{const b=el('button','',ch,t_('f')[k]);b.type='button';b.dataset.k=k;b.onclick=()=>{FILTER=k;chips.forEach(c=>c.classList.toggle('on',c.dataset.k===k))};return b});
-  chips.forEach(c=>c.classList.toggle('on',c.dataset.k===FILTER));WALL_UI={wu,wsp,ch};
+  const chips=['all','brand','ugc','presenter','concept'].map(k=>{const b=el('button','',ch,t_('f')[k]);b.type='button';b.dataset.k=k;b.onclick=()=>{FILTER=k;CAR.target=0;chips.forEach(c=>c.classList.toggle('on',c.dataset.k===k))};return b});
+  chips.forEach(c=>c.classList.toggle('on',c.dataset.k===FILTER));
+  /* phone slider caption: counter, title, credit, watch */
+  const ci=el('div','carinfo',wu);const cnt=el('div','cnt mono',ci);const ctt=el('div','ctitle',ci);const ccr=el('div','cr',ci);
+  const cw=el('button','btn w',ci,'▶ '+t_('watch'));cw.type='button';cw.onclick=()=>{const id=carList()[Math.round(CAR.target)];if(id)openFilm(id,CARDS[WALL_ORDER.indexOf(id)])};
+  WALL_UI={wu,wsp,ch,ci,cnt,ct:ctt,cc:ccr,cur:null};
   /* skills */
   const sk=el('section','skills ui',ui);sk.setAttribute('aria-label',t_('skH'));
   const skh=el('div','sk-h',sk);el('div','cr',skh,t_('skS'));const skt=el('h2','',skh);const sksp=letters(skt,t_('skH'));
@@ -522,10 +550,11 @@ function buildUI(){
   SKUI={sk,sksp,items,skd,sknow,skdt,skds,sktl,cur:-1};
   /* close */
   const c=el('section','cta ui',ui);const c1=el('div','',c);const c2=el('div','g',c);const s1=letters(c1,t_('c1')),s2=letters(c2,t_('c2'));
-  const cb=el('div','btns',c);const k=CONFIG.contact;
-  const mk=(lbl,href,ico,cls)=>{if(!href)return;const x=el('a','btn '+cls,cb,ICON[ico]+'<span>'+lbl+'</span>');x.href=href;if(!href.startsWith('mailto:')){x.target='_blank';x.rel='noopener'}return x};
-  mk(t_('wa'),k.whatsapp&&'https://wa.me/'+k.whatsapp.replace(/\D/g,''),'wa','w');mk(t_('em'),k.email&&'mailto:'+k.email,'em','o');mk(t_('mq'),k.mostaql,'mq','o');
-  const ct=el('div','ct',c);ct.innerHTML=[k.email&&`<span>${k.email}</span>`,k.whatsapp&&`<span dir="ltr">${k.whatsapp.replace(/^\+(\d{2})(\d{3})(\d{3})(\d+)$/,'+$1 $2 $3 $4')}</span>`].filter(Boolean).join(' · ');
+  const cb=el('div','contact',c);const k=CONFIG.contact;const handle=u=>u.replace(/\/$/,'').split('/').pop();
+  const mk=(lbl,href,ico,val,main)=>{if(!href)return;const x=el('a','cc'+(main?' main':''),cb,`<span class="ic">${ICON[ico]}</span><span class="tx"><b>${lbl}</b><span dir="ltr">${val}</span></span>`);x.href=href;if(!href.startsWith('mailto:')){x.target='_blank';x.rel='noopener'}return x};
+  mk(t_('wa'),k.whatsapp&&'https://wa.me/'+k.whatsapp.replace(/\D/g,''),'wa',k.whatsapp&&k.whatsapp.replace(/^\+(\d{2})(\d{3})(\d{3})(\d+)$/,'+$1 $2 $3 $4'),1);
+  mk(t_('em'),k.email&&'mailto:'+k.email,'em',k.email);mk(t_('li'),k.linkedin,'li',k.linkedin&&handle(k.linkedin));mk(t_('mq'),k.mostaql,'mq',k.mostaql&&handle(k.mostaql));
+  const ct=el('div','ct',c);
   CTA={c,s1,s2,cb,ct};FOOT=el('div','foot mono ui',ui,L(CONFIG.name)+' · '+t_('foot'));
   /* rail */
   RAIL=el('nav','rail ui',ui);RAIL.setAttribute('aria-label','Eras');RAIL.btns=ERAS.map((Er,i)=>{const b=el('button','',RAIL,Er.year);b.type='button';b.onclick=()=>jumpTo(TL.eras[i].intro[0]+U.INTRO*.5);return b});
@@ -648,7 +677,7 @@ function eras(s,av){
     bend=(5+trans*30+av*16*(Math.abs(de)>0?1:.35));tw=(Math.sin(TIME*1.4+k)*3+de*9);
     if(sl.last&&E2.fill){const f=E.io4(seg(s,E2.fill[0],E2.fill[1]));if(f>0){const cw=Math.max(VW,VH*9/16);w=lerp(w,cw,f);hh=lerp(hh,cw*16/9,f);x=lerp(x,0,f);y=lerp(y,0,f);z=lerp(z,0,f);
       rx=lerp(rx,0,f);ry=lerp(ry,0,f);rz=lerp(rz,0,f);bend=lerp(bend,0,f);tw=lerp(tw,0,f);dim=lerp(dim,0,f)}if(s>=E2.fill[1])op=0}
-    if(sl.last&&E2.wall){const f=E.io3(seg(s,E2.wall[0],E2.wall[1]));if(f>0){const W=wallLayout();const p=cardPose(WALL_ORDER.indexOf(sl.id),W,0,0);
+    if(sl.last&&E2.wall){const f=E.io3(seg(s,E2.wall[0],E2.wall[1]));if(f>0){const W=wallLayout();const p=PHONE?carPose(CAR.pos<0?0:Math.max(0,carList().indexOf(sl.id))-CAR.pos):cardPose(WALL_ORDER.indexOf(sl.id),W,0,0);
       w=lerp(w,p.w,f);hh=lerp(hh,p.h,f);x=lerp(x,p.x,f);y=lerp(y,p.y,f);z=lerp(z,p.z,f);rx=lerp(rx,0,f);ry=lerp(ry,p.ry,f);rz=lerp(rz,0,f);bend=lerp(bend,0,f);tw=lerp(tw,0,f);if(f>=.999)op=0}}
     shx.u.uTex.value=texFor('pv/'+sl.id+'.mp4',FR(FILMS[sl.id].frame));
     const ro=100+Math.round(z/4)+k*.01,sheen=clamp(1+d*2.2,0,1.6);
@@ -658,6 +687,12 @@ function eras(s,av){
 
 /* ---- the wall ---- */
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
+/* phone slider: one film centred and playing, the rest angled away in 3D; swipe to browse */
+const CAR={pos:-1,target:-1,drag:false};
+function carList(){return WALL_ORDER.filter(id=>FILTER==='all'||FILMS[id].kind===FILTER)}
+function carSize(){const ch=Math.min(VH*.44,VW*.62*16/9);return{w:ch*9/16,h:ch}}
+function carPose(k){const z=carSize(),side=LANG==='ar'?-1:1,ak=Math.abs(k),c=clamp(k,-1.6,1.6);
+  return{x:side*(Math.sign(k)*Math.min(ak,1)*z.w*.82+Math.sign(k)*Math.max(0,ak-1)*z.w*.42),y:-VH*.07,z:-Math.min(ak,3)*190,ry:-side*c*34,w:z.w*(1-Math.min(ak,2)*.1),h:z.h*(1-Math.min(ak,2)*.1),op:1-seg(ak,2.2,3)}}
 function wall(s,av){const [w0,w1]=TL.wall,[c0]=TL.skills;const W=wallLayout();
   const on=s>w0+U.WALLIN*.35&&s<c0+.4;
   const wi=seg(s,w0+U.WALLIN*.2,w1);const sc=E.i3(seg(s,c0,c0+U.SKIN*.9));
@@ -667,6 +702,17 @@ function wall(s,av){const [w0,w1]=TL.wall,[c0]=TL.skills;const W=wallLayout();
   /* hover */
   HOVER=-1;const pick=[];
   const lastId=SLOTS[SLOTS.length-1].id;
+  if(PHONE){const list=carList();if(CAR.pos<0||CAR.target>list.length-1){CAR.target=Math.max(0,list.indexOf(lastId));if(CAR.pos<0)CAR.pos=CAR.target}
+    if(!CAR.drag)CAR.pos+=(CAR.target-CAR.pos)*.16;
+    const cur=list[Math.round(clamp(CAR.target,0,list.length-1))];const u=WALL_UI;
+    if(u.cur!==cur+FILTER+LANG){u.cur=cur+FILTER+LANG;const F=FILMS[cur];u.cnt.textContent=String(list.indexOf(cur)+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0');u.ct.textContent=L(F.title);u.cc.textContent=L(F.credit);
+      u.ci.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:380,easing:'cubic-bezier(.2,.8,.2,1)'})}
+    CARDS.forEach((cd,i)=>{const id=WALL_ORDER[i];const li=list.indexOf(id);const a=id===lastId?(s>=w1?1:0):E.o4(clamp(wi*1.6-Math.abs(li-CAR.pos)*.12));if(li<0||(a<=0&&sc<=0))return;
+      const k=li-CAR.pos,p=carPose(k),r=RND[i];let x=p.x,y=p.y,z=lerp(-1400,p.z,a),rx=(1-a)*r[0]*80,rz=(1-a)*r[1]*60,op=a*p.op;
+      if(sc>0){x+=r[0]*VW*1.4*sc;y+=r[1]*VH*1.2*sc;z+=sc*(500+r[2]*1300);rx+=r[0]*300*sc;rz+=r[1]*240*sc;op*=1-seg(sc,.55,.9)}
+      const ctr=clamp(1-Math.abs(k));cd.u.uTex.value=Math.abs(k)<.6?texFor('pv/'+id+'.mp4',FR(FILMS[id].frame)):texFor('pvs/'+id+'.mp4',FR(FILMS[id].frame));
+      put(cd,{w:p.w,h:p.h,x,y,z,rx:rx*M,ry:p.ry,rz:rz*M,bend:(Math.abs(CAR.pos-CAR.target)*30+av*10)*M,op,gray:(1-ctr)*.7,dim:(1-ctr)*.35,glow:ctr*.12,ro:300+Math.round(z/4),sheen:clamp(1.3-Math.abs(k)*1.4,0,1.6),shA:ctr*.35})});
+    PICKABLE=[];return}
   CARDS.forEach((cd,i)=>{const id=WALL_ORDER[i];const F=FILMS[id];const match=FILTER==='all'||F.kind===FILTER;
     const a=id===lastId?(s>=w1?1:0):E.o4(clamp(wi*1.6-i*.05));if(a<=0&&sc<=0)return;
     const lift=(match&&FILTER!=='all'?50:0)-(match?0:260);
@@ -688,7 +734,20 @@ function pickCard(){if(!PICKABLE.length||PX<0)return-1;ndc.set(PX/VW*2-1,-(PY/VH
 function wallTip(){const tip=$('tip');if(HOVER>=0){const F=FILMS[WALL_ORDER[HOVER]];if(tip._id!==HOVER){tip._id=HOVER;tip.innerHTML=`<b>${L(F.title)}</b><span>${L(F.credit)}</span>`}S(tip,'left',PX+'px');S(tip,'top',PY+'px');S(tip,'opacity','1');document.body.style.cursor='pointer'}
   else{S(tip,'opacity','0');document.body.style.cursor=''}
 }
-addEventListener('click',e=>{if(THEATRE)return;if(e.target.closest('button,a'))return;PX=e.clientX;PY=e.clientY;const i=pickCard();if(i<0)return;openFilm(WALL_ORDER[i],CARDS[i])});
+function inWall(){const s=sy;return s>TL.wall[0]+U.WALLIN*.6&&s<TL.skills[0]+.2}
+let T0X=0,T0Y=0,T0P=0,TMODE='',TT=0,TV=0,TLX=0;
+addEventListener('touchstart',e=>{if(THEATRE||!PHONE||!inWall()||e.target.closest('button,a,.chips'))return;const t=e.touches[0];T0X=TLX=t.clientX;T0Y=t.clientY;T0P=CAR.pos;TMODE='?';TT=performance.now();TV=0},{passive:true});
+addEventListener('touchmove',e=>{if(!TMODE)return;const t=e.touches[0],dx=t.clientX-T0X,dy=t.clientY-T0Y;
+  if(TMODE==='?'){if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.1){TMODE='x';CAR.drag=true}else if(Math.abs(dy)>10){TMODE='';return}}
+  if(TMODE==='x'){e.preventDefault();const side=LANG==='ar'?-1:1,n=carList().length,step=carSize().w*.82;let p=T0P-side*dx/step;
+    if(p<0)p*=.35;if(p>n-1)p=n-1+(p-n+1)*.35;TV=(t.clientX-TLX);TLX=t.clientX;CAR.pos=p}},{passive:false});
+addEventListener('touchend',e=>{if(!TMODE)return;const side=LANG==='ar'?-1:1,n=carList().length;
+  if(TMODE==='x'){CAR.drag=false;CAR.target=clamp(Math.round(CAR.pos-side*TV*.06),0,n-1)}
+  else if(TMODE==='?'&&performance.now()-TT<450){const t=e.changedTouches[0],cx=VW/2,z=carSize();const dx=(t.clientX-cx)*side;
+    if(Math.abs(dx)<z.w*.5&&Math.abs(t.clientY-(VH/2+VH*.07))<z.h*.55){const id=carList()[Math.round(CAR.target)];if(id)openFilm(id,CARDS[WALL_ORDER.indexOf(id)])}
+    else if(Math.abs(t.clientY-(VH/2+VH*.07))<z.h*.5)CAR.target=clamp(Math.round(CAR.target)+(dx>0?1:-1),0,n-1)}
+  TMODE=''},{passive:true});
+addEventListener('click',e=>{if(THEATRE||PHONE)return;if(e.target.closest('button,a'))return;PX=e.clientX;PY=e.clientY;const i=pickCard();if(i<0)return;openFilm(WALL_ORDER[i],CARDS[i])});
 
 /* ---- skills: the craft, each proven by a film on a sheet ---- */
 function skills(s,av){const [k0,k1]=TL.skills;const u=SKUI;
@@ -756,7 +815,7 @@ addEventListener('keydown',e=>{if(!THEATRE)return;if(e.key==='Escape')closeFilm(
 /* ===================== nav ===================== */
 function jumpTo(u){scrollTo({top:u*VH,behavior:'instant'});sy=u}
 $('navFilms').onclick=()=>jumpTo(TL.hold[0]+.15);$('navContact').onclick=()=>jumpTo(TL.close[1]);$('skip').onclick=e=>{e.preventDefault();jumpTo(TL.hold[0]+.15)};
-$('navMotion').onclick=()=>{MOTION=!MOTION;M=MOTION?1:.18;try{localStorage.setItem('btf-motion',MOTION?'1':'0')}catch(e){}$('navMotion').textContent=MOTION?t_('motionOn'):t_('motionOff')};
+
 $('navLang').onclick=()=>{LANG=LANG==='en'?'ar':'en';try{localStorage.setItem('btf-lang',LANG)}catch(e){}buildUI();if(THEATRE&&CURF){const t=thv.currentTime;fill(CURF);thv.currentTime=t}};
 addEventListener('resize',()=>{measure()});
 
