@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Beyond the Frame: AI films and ads for Gulf brands, told through nine centuries of images.">
 <meta name="theme-color" content="#0b0b0c">
-<meta property="og:title" content="Beyond the Frame">
+<meta property="og:title" content="Islam Elshahawi · AI film director">
 <meta property="og:description" content="AI films and ads for Gulf brands, told through nine centuries of images.">
 <meta property="og:image" content="hero/campaign.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0c'/%3E%3Cpath d='M14 14h14v6h-8v8h-6zM50 50H36v-6h8v-8h6z' fill='%23f2b43c'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23f3efe7'/%3E%3C/svg%3E">
-<title>Beyond the Frame</title>
+<title>Islam Elshahawi · AI film director</title>
 <!--
 THESIS: Nine hundred years of images led here. Real art from every era of picture-making is the world; the director's films fly through it as CineStream sheets. Refuses the dark grid of video cards.
 OWN-WORLD: near-black ink UI that recedes, colour only from art and film; Archivo 900 titles that light grey→white; museum wall labels; bending film sheets; noise-edged ink and film-burn transitions.
@@ -51,7 +51,9 @@ html[lang=ar] .nav .c{font-family:var(--f-ar)}
 .nav .r{display:flex;justify-content:flex-end;gap:clamp(12px,2vw,26px);font-size:12.5px}
 .nav button{pointer-events:auto;padding:4px 0;opacity:.85}.nav button:hover{opacity:1}
 .nav .ar{font-family:var(--f-ar)}
-@media (max-width:760px){.nav{grid-template-columns:1fr auto}.nav .l{display:none}.nav .c{text-align:left}.nav .r{gap:14px}}
+@media (max-width:760px){.nav{grid-template-columns:1fr auto;padding-top:calc(env(safe-area-inset-top,0px) + 16px)}.nav .l{display:none}.nav .c{text-align:left;font-size:13px}.nav .r{gap:16px;font-size:13px}
+  #navMotion{font-size:0;width:20px}#navMotion:before{content:'';display:inline-block;width:14px;height:14px;border-radius:50%;border:1.5px solid currentColor;background:linear-gradient(90deg,currentColor 50%,transparent 50%);vertical-align:middle}
+  html[dir=rtl] .nav .c{text-align:right}}
 
 /* hero */
 .hero{position:fixed;inset:0;z-index:6}
@@ -101,7 +103,8 @@ html[dir=rtl] .lbl{right:auto;left:clamp(16px,3vw,40px);border-left:0;border-rig
 .case span{display:block;font:500 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
 html[dir=rtl] .case{left:auto;right:clamp(16px,4vw,56px)}
 html[lang=ar] .case span{font-family:var(--f-ar);letter-spacing:0;font-size:12px}
-@media (max-width:760px){.case{display:none}.fb{top:auto;bottom:9vh;transform:none}.ttl{font-size:clamp(34px,10vw,52px)}}
+.fb .rm{display:none}
+@media (max-width:760px){.case{display:none}.fb{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 6vh);transform:none}.ttl{font-size:clamp(32px,9.5vw,50px)}.fb .cr{margin-bottom:8px}.fb .rm{display:block;margin:10px auto 0;max-width:34ch;font-size:13px;line-height:1.4;color:#d9d3c8}.play{width:52px;height:52px;margin-top:14px}}
 
 /* rail */
 .rail{position:fixed;right:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);z-index:9;display:grid;gap:10px;justify-items:end}
@@ -137,14 +140,17 @@ html[lang=ar] .sk-list li{font-family:var(--f-ar);letter-spacing:0}
 .sk-tools{position:absolute;right:clamp(16px,4vw,56px);bottom:clamp(26px,6vh,60px);color:var(--dim)}
 html[dir=rtl] .sk-h,html[dir=rtl] .sk-list,html[dir=rtl] .sk-d{left:auto;right:clamp(16px,4vw,56px)}
 html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
-@media (max-width:760px){.sk-list{display:none}.sk-h{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 23vh)}.sk-d{max-width:none;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 6vh)}.sk-tools{display:none}}
+.sk-now{display:none}
+@media (max-width:760px){.sk-list{display:none}.sk-h{top:calc(env(safe-area-inset-top,0px) + 9vh)}.sk-h h2{font-size:clamp(34px,10vw,48px)}.sk-d{max-width:none;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 5vh)}html[dir=rtl] .sk-d{left:16px}.sk-tools{display:none}
+  .sk-now{display:block;font:800 22px/1.15 var(--f-display);color:var(--paper)}html[lang=ar] .sk-now{font-family:var(--f-ar)}}
 
 /* close */
 .cta{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:8;padding:0 16px}
 .cta div{font:900 clamp(38px,6vw,100px)/1 var(--f-display);letter-spacing:-.03em}
 .cta .g{color:var(--gold)}
 .cta .btns{justify-content:center;margin-top:30px}
-.cta .ct{margin-top:18px;color:#cfc9be;font-size:13px}
+.cta .ct{margin-top:20px;color:#cfc9be;font-size:14px;user-select:text;pointer-events:auto}
+.cta .btn svg{flex:none}
 .foot{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);text-align:center;z-index:8;color:#bdb7ac}
 
 /* theatre */
@@ -161,13 +167,14 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
 html[lang=ar] #th aside h3{font-family:var(--f-ar);letter-spacing:0}
 #th aside .k{display:block;font:500 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
 html[lang=ar] #th aside .k{font-family:var(--f-ar);letter-spacing:0;font-size:12px}
-#th .more{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+#th aside>div{min-width:0}
+#th .more{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;width:100%;max-width:100%}
 #th .more button{flex:none;width:54px;height:96px;border-radius:5px;background-size:cover;background-position:center;opacity:.6;transition:opacity .2s}
 #th .more button:hover,#th .more button.on{opacity:1;outline:1.5px solid var(--gold)}
 #th .x{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);right:22px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);font-size:18px}
 #th .nv{display:flex;gap:10px}
 #th .nv button{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:600 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
-@media (max-width:860px){#th .in{grid-template-columns:1fr;justify-items:center;overflow-y:auto;max-height:100vh;padding:70px 16px 30px}#th .vb{height:min(62vh,620px)}#th aside{max-width:520px}}
+@media (max-width:860px){#th{display:block;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}#th .in{grid-template-columns:minmax(0,1fr);justify-items:center;padding:calc(env(safe-area-inset-top,0px) + 74px) 16px calc(env(safe-area-inset-bottom,0px) + 32px)}#th .vb{height:auto;width:min(100%,calc(64vh * 9 / 16))}#th aside{width:100%;max-width:520px;min-width:0}#th .more{max-width:100%}#th .x{position:fixed;z-index:2;background:rgba(6,6,7,.7)}}
 
 #vids{position:fixed;left:0;top:0;width:2px;height:2px;opacity:.001;pointer-events:none;overflow:hidden;z-index:-2}
 #vids video{width:2px;height:2px}
@@ -192,7 +199,7 @@ html[lang=ar] #th aside .k{font-family:var(--f-ar);letter-spacing:0;font-size:12
 
 <header class="nav" id="nav">
   <div class="l" id="navL"></div>
-  <div class="c" id="navName">Beyond the Frame</div>
+  <div class="c" id="navName">Islam Elshahawi</div>
   <nav class="r" aria-label="Site">
     <button type="button" id="navFilms"></button>
     <button type="button" id="navContact"></button>
@@ -203,7 +210,7 @@ html[lang=ar] #th aside .k{font-family:var(--f-ar);letter-spacing:0;font-size:12
 
 <main id="ui"></main>
 <div class="tip" id="tip"></div>
-<div class="loader" id="loader"><div class="mono" style="color:var(--dim)">Beyond the Frame</div></div>
+<div class="loader" id="loader"><div class="mono" style="color:var(--dim)">Islam Elshahawi</div></div>
 
 <div id="th" hidden role="dialog" aria-modal="true" aria-labelledby="thTitle">
   <button class="x" type="button" id="thX" aria-label="Close">✕</button>
@@ -231,7 +238,8 @@ html[lang=ar] #th aside .k{font-family:var(--f-ar);letter-spacing:0;font-size:12
    CONTENT — edit here. Films, eras and copy are data; the choreography
    reads them, so swapping a film or a preview never touches the motion.
    ===================================================================== */
-const CONFIG={name:'Beyond the Frame', contact:{whatsapp:'', email:'', mostaql:''}};
+const CONFIG={name:{en:'Islam Elshahawi',ar:'إسلام الشهاوي'},
+  contact:{whatsapp:'+201098687643', email:'islamelshahawi@gmail.com', mostaql:'https://mostaql.com/u/islam_elshahawi'}};
 const FILMS={
  campaign_full_01:{kind:'concept',frame:'campaign_full_01_2',
   title:{en:'Welcome to the Future',ar:'مرحبًا بالمستقبل'},credit:{en:'Creative-AI internship · I led the team',ar:'برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق'},
@@ -326,20 +334,26 @@ const WALL_ORDER=['campaign_full_01','calla_reel_02','vo_full_01','vayqa_reel_01
 const STRIP=[['campaign_full_01','campaign_full_01_2'],['calla_reel_02','calla_reel_02_1'],['vavi_reel_01','vavi_reel_01_2'],['calla_full_01','calla_full_01_2'],['techcloud_full_01','techcloud_full_01_2'],['HERO','campaign_full_01_1'],['vo_full_01','vo_full_01_1'],['vayqa_reel_01','vayqa_reel_01_2'],['riwaq_reel_02','riwaq_reel_02_2'],['misc_reel_01','misc_reel_01_2'],['vayqa_reel_02','vayqa_reel_02_2']];
 const HERO_I=5;
 const T={
- en:{role:'AI film director',loc:'Riyadh · Gulf · Remote',films:'Films',contact:'Contact',motionOn:'Motion on',motionOff:'Motion off',lang:'ع',
+ en:{role:'AI film director',films:'Films',contact:'Contact',motionOn:'Motion on',motionOff:'Motion off',lang:'ع',
   heroCredit:'Creative-AI internship campaign · I led the team',heroTitle:'Welcome to the Future',watch:'Watch film',all:'All 11 films',sFilms:'films',sBrands:'Gulf brands',hint:'Scroll to open the frame',
   st:['Every image ever made','began as light','in a dark room.'],brief:'Brief',idea:'Idea',role2:'My role',more:'More films',prev:'← Previous',next:'Next →',
   wall:'Watch everything.',f:{all:'All 11',brand:'Brand films',ugc:'AI UGC',presenter:'AI presenters',concept:'Concepts'},
   skS:'What I do on every film',skH:'The craft',seen:'Seen in',tools:'Tools: DaVinci Resolve · AI image and video generation',
-  c1:'There’s more to be seen.',c2:'Let’s make it.',wa:'WhatsApp',em:'Email',mq:'Mostaql',ct:'Contact details coming soon.',foot:'AI film director · Riyadh, Gulf, remote',skip:'Skip to all films'},
- ar:{role:'مخرج أفلام بالذكاء الاصطناعي',loc:'الرياض · الخليج · عن بُعد',films:'الأعمال',contact:'تواصل',motionOn:'الحركة: تعمل',motionOff:'الحركة: متوقفة',lang:'EN',
+  c1:'There’s more to be seen.',c2:'Let’s make it.',wa:'WhatsApp',em:'Email',mq:'Mostaql',ct:'Contact details coming soon.',foot:'AI film director · Beyond the Frame',skip:'Skip to all films'},
+ ar:{role:'مخرج أفلام بالذكاء الاصطناعي',films:'الأعمال',contact:'تواصل',motionOn:'الحركة: تعمل',motionOff:'الحركة: متوقفة',lang:'EN',
   heroCredit:'حملة برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق',heroTitle:'مرحبًا بالمستقبل',watch:'شاهد الفيلم',all:'كل الأفلام (١١)',sFilms:'فيلمًا',sBrands:'علامات خليجية',hint:'مرّر لفتح الإطار',
   st:['كل صورة صُنعت يومًا','بدأت بضوء','في غرفة مظلمة.'],brief:'الموجز',idea:'الفكرة',role2:'دوري',more:'أفلام أخرى',prev:'→ السابق',next:'التالي ←',
   wall:'شاهد كل شيء.',f:{all:'الكل',brand:'أفلام العلامات',ugc:'UGC بالذكاء الاصطناعي',presenter:'مقدّمون',concept:'أفكار'},
   skS:'ما أقوم به في كل فيلم',skH:'الحرفة',seen:'في فيلم',tools:'الأدوات: دافنشي ريزولف · توليد الصور والفيديو بالذكاء الاصطناعي',
-  c1:'هناك المزيد لنراه.',c2:'لنصنعه معًا.',wa:'واتساب',em:'البريد',mq:'مستقل',ct:'بيانات التواصل قريبًا.',foot:'مخرج أفلام بالذكاء الاصطناعي · الرياض، الخليج، عن بُعد',skip:'انتقل إلى كل الأفلام'}
+  c1:'هناك المزيد لنراه.',c2:'لنصنعه معًا.',wa:'واتساب',em:'البريد',mq:'مستقل',ct:'بيانات التواصل قريبًا.',foot:'مخرج أفلام بالذكاء الاصطناعي · ما وراء الإطار',skip:'انتقل إلى كل الأفلام'}
 };
 
+/* line icons, drawn in the site's own stroke */
+const ICON={
+ wa:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20.5 11.6a8.6 8.6 0 0 1-12.7 7.5L3.5 20.4l1.3-4.1a8.6 8.6 0 1 1 15.7-4.7z"/><path d="M9.2 8.4c.4-.6.9-.6 1.2 0l.6 1.4c.1.3 0 .6-.2.8l-.5.5c.6 1.3 1.6 2.3 2.9 2.9l.5-.5c.2-.2.5-.3.8-.2l1.4.6c.6.3.6.8 0 1.2-.7.5-1.6.7-2.4.4-2.3-.9-4.1-2.7-5-5-.3-.8-.1-1.7.7-2.1z" fill="currentColor" stroke="none"/></svg>',
+ em:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.8 6.8 12 13l8.2-6.2"/></svg>',
+ mq:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12.5" rx="2.5"/><path d="M8.5 7.5V5.8c0-.7.6-1.3 1.3-1.3h4.4c.7 0 1.3.6 1.3 1.3v1.7M3 12.5h18M12 11.5v2"/></svg>'
+};
 /* ===================== kit ===================== */
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), seg=(t,a,b)=>clamp((t-a)/(b-a)), lerp=(a,b,t)=>a+(b-a)*t;
 const E={o3:t=>1-Math.pow(1-t,3),o4:t=>1-Math.pow(1-t,4),o5:t=>1-Math.pow(1-t,5),i3:t=>t*t*t,i2:t=>t*t,
@@ -476,7 +490,7 @@ build();
 const ui=$('ui');let SKUI,HERO,STM,ERA_UI=[],FILM_UI=[],WALL_UI,CTA,RAIL,HINT,FOOT;
 function buildUI(){
   ui.innerHTML='';document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
-  $('navL').innerHTML=`${t_('role')}<br><span>${t_('loc')}</span>`;$('navName').textContent=CONFIG.name;
+  $('navL').textContent=t_('role');$('navName').textContent=L(CONFIG.name);document.title=L(CONFIG.name)+' · '+t_('role');
   $('navFilms').textContent=t_('films');$('navContact').textContent=t_('contact');$('navMotion').textContent=MOTION?t_('motionOn'):t_('motionOff');$('navLang').textContent=t_('lang');$('skip').textContent=t_('skip');
   /* hero */
   const h=el('section','hero ui',ui);h.setAttribute('aria-label',t_('heroTitle'));el('div','shade',h);
@@ -494,7 +508,7 @@ function buildUI(){
     const lb=el('div','lbl ui',ui,L(Er.lbl));return{e,sh,p,y,hl,hsp,lb}});
   /* films */
   FILM_UI=SLOTS.map(sl=>{const F=FILMS[sl.id];const fb=el('article','fb ui',ui);const cr=el('span','cr',fb,L(F.credit));const t=el('h3','ttl',fb);const sp=letters(t,L(F.title));
-    const pl=el('button','play',fb);pl.type='button';pl.setAttribute('aria-label',t_('watch')+': '+L(F.title));pl.onclick=()=>openFilm(sl.id);
+    const rm=el('div','rm',fb,L(F.role));const pl=el('button','play',fb);pl.type='button';pl.setAttribute('aria-label',t_('watch')+': '+L(F.title));pl.onclick=()=>openFilm(sl.id);
     const cs=el('div','case ui',ui,`<div><span>${t_('brief')}</span>${L(F.brief)}</div><div><span>${t_('role2')}</span>${L(F.role)}</div>`);return{fb,cr,sp,pl,cs}});
   /* wall */
   const wu=el('section','wallui ui',ui);const wh=el('h2','',wu);const wsp=letters(wh,t_('wall'));const ch=el('div','chips',wu);
@@ -504,15 +518,15 @@ function buildUI(){
   const sk=el('section','skills ui',ui);sk.setAttribute('aria-label',t_('skH'));
   const skh=el('div','sk-h',sk);el('div','cr',skh,t_('skS'));const skt=el('h2','',skh);const sksp=letters(skt,t_('skH'));
   const skl=el('ol','sk-list',sk);const items=SKILLS.map((k,i)=>{const li=el('li','',skl);el('i','',li,String(i+1).padStart(2,'0'));el('span','',li,L(k.t));return li});
-  const skd=el('div','sk-d',sk);const skdt=el('div','',skd);const skds=el('div','mono',skd);const sktl=el('div','sk-tools mono',sk,t_('tools'));
-  SKUI={sk,sksp,items,skd,skdt,skds,sktl,cur:-1};
+  const skd=el('div','sk-d',sk);const sknow=el('div','sk-now',skd);const skdt=el('div','',skd);const skds=el('div','mono',skd);const sktl=el('div','sk-tools mono',sk,t_('tools'));
+  SKUI={sk,sksp,items,skd,sknow,skdt,skds,sktl,cur:-1};
   /* close */
   const c=el('section','cta ui',ui);const c1=el('div','',c);const c2=el('div','g',c);const s1=letters(c1,t_('c1')),s2=letters(c2,t_('c2'));
   const cb=el('div','btns',c);const k=CONFIG.contact;
-  const mk=(lbl,href)=>{const x=href?el('a','btn '+(lbl===t_('wa')?'w':'o'),cb,lbl):el('span','btn o',cb,lbl);if(href){x.href=href;x.target='_blank';x.rel='noopener'}return x};
-  mk(t_('wa'),k.whatsapp?'https://wa.me/'+k.whatsapp.replace(/\D/g,''):'');mk(t_('em'),k.email?'mailto:'+k.email:'');mk(t_('mq'),k.mostaql||'');
-  const ct=el('div','ct',c,(k.email?k.email+' · ':'')+(k.whatsapp||'')||t_('ct'));
-  CTA={c,s1,s2,cb,ct};FOOT=el('div','foot mono ui',ui,CONFIG.name+' · '+t_('foot'));
+  const mk=(lbl,href,ico,cls)=>{if(!href)return;const x=el('a','btn '+cls,cb,ICON[ico]+'<span>'+lbl+'</span>');x.href=href;if(!href.startsWith('mailto:')){x.target='_blank';x.rel='noopener'}return x};
+  mk(t_('wa'),k.whatsapp&&'https://wa.me/'+k.whatsapp.replace(/\D/g,''),'wa','w');mk(t_('em'),k.email&&'mailto:'+k.email,'em','o');mk(t_('mq'),k.mostaql,'mq','o');
+  const ct=el('div','ct',c);ct.innerHTML=[k.email&&`<span>${k.email}</span>`,k.whatsapp&&`<span dir="ltr">${k.whatsapp.replace(/^\+(\d{2})(\d{3})(\d{3})(\d+)$/,'+$1 $2 $3 $4')}</span>`].filter(Boolean).join(' · ');
+  CTA={c,s1,s2,cb,ct};FOOT=el('div','foot mono ui',ui,L(CONFIG.name)+' · '+t_('foot'));
   /* rail */
   RAIL=el('nav','rail ui',ui);RAIL.setAttribute('aria-label','Eras');RAIL.btns=ERAS.map((Er,i)=>{const b=el('button','',RAIL,Er.year);b.type='button';b.onclick=()=>jumpTo(TL.eras[i].intro[0]+U.INTRO*.5);return b});
   $('th').querySelectorAll('[data-t]').forEach(x=>x.textContent=t_(x.dataset.t==='role'?'role2':x.dataset.t));$('thPrev').textContent=t_('prev');$('thNext').textContent=t_('next');
@@ -525,18 +539,18 @@ const HERO_SH=sheet(.8,0);const SLICES=STRIP.map(([id,fr],i)=>i===HERO_I?null:sh
 const SH=SLOTS.map(()=>sheet(9/16,10));const SHD=SLOTS.map(()=>shadow());
 const CARDS=WALL_ORDER.map(()=>sheet(9/16,8));const SKS=SKILLS.map(()=>sheet(9/16,10)),SKSD=SKILLS.map(()=>shadow());
 const STRIPS=ERAS.map(()=>sheet(1,0));
-let VW=innerWidth,VH=innerHeight,SW,SHH,FILTER='all',HOVER=-1,THEATRE=false,TIME=0;
+let PHONE=false,VW=innerWidth,VH=innerHeight,SW,SHH,FILTER='all',HOVER=-1,THEATRE=false,TIME=0;
 const RND=CARDS.map((_,i)=>{const r=n=>{const x=Math.sin(i*91.7+n*13.3)*43758.5;return x-Math.floor(x)};return[r(1)-.5,r(2)-.5,r(3),r(4)-.5]});
-function measure(){VW=innerWidth;VH=innerHeight;SHH=Math.min(VH*.64,VW*.74*16/9);SW=SHH*9/16;
+function measure(){VW=innerWidth;VH=innerHeight;PHONE=VW<760;SHH=Math.min(VH*(PHONE?.52:.64),VW*.74*16/9);SW=SHH*9/16;
   if(renderer){renderer.setPixelRatio(Math.min(devicePixelRatio||1,MOB?1:1.25));renderer.setSize(VW,VH,false)}
   cam.aspect=VW/VH;cam.position.set(0,0,VH/2/Math.tan(15*D));cam.near=10;cam.far=cam.position.z*6;cam.updateProjectionMatrix();
   plateU.uRes.value.set(VW,VH);$('scroll').style.height=(TL.total*VH+VH)+'px'}
 
 /* wall geometry */
-function wallLayout(){const cols=VW<760?3:6;const rows=Math.ceil(CARDS.length/cols);const CH=VW<760?VH*.18:Math.min(VH*.3,VW*.12*16/9);const CW=CH*9/16;
+function wallLayout(){const cols=VW<760?3:6;const rows=Math.ceil(CARDS.length/cols);const CH=VW<760?Math.min(VH*.145,VW*.27*16/9):Math.min(VH*.3,VW*.12*16/9);const CW=CH*9/16;
   const R=VW*(VW<760?1.1:.85);const step=(CW*1.22)/R;return{cols,rows,CH,CW,R,step}}
 function cardPose(i,W,rot,lift){const c=i%W.cols,r=Math.floor(i/W.cols);const n=r===W.rows-1?CARDS.length-r*W.cols:W.cols;const col=c-(n-1)/2;
-  const a=col*W.step+rot*D;return{x:W.R*Math.sin(a),y:(r-(W.rows-1)/2)*W.CH*1.14+VH*.03,z:W.R*(1-Math.cos(a))*.55+lift,ry:-a/D*.75,w:W.CW,h:W.CH}}
+  const a=col*W.step+rot*D;return{x:W.R*Math.sin(a),y:(r-(W.rows-1)/2)*W.CH*1.14+(VW<760?0:VH*.03),z:W.R*(1-Math.cos(a))*.55+lift,ry:-a/D*.75,w:W.CW,h:W.CH}}
 
 /* ===================== frame ===================== */
 let START=0,CAMK=1,CK=1,sy=0,vel=0,last=performance.now(),T0=performance.now(),mx=0,my=0,smx=0,smy=0,wallRot=0,introT=0;
@@ -627,9 +641,9 @@ function eras(s,av){
     vis(U2.fb,alive&&!(lastOut&&d>.24)?to:0);if(to>0)light(U2.sp,tl);vis(U2.cs,alive?clamp(1-(Math.abs(d)-.1)/.12):0);
     if(!alive)return;
     const de=d<0?Math.min(0,(d+h)/(1-h)):Math.max(0,(d-h)/(1-h));
-    const dir=sl.dir;let w=SW,hh=SHH,x=dir*VW*.035,y=0,z=0,rx=7,ry=-12*dir,rz=-6*dir,op=1,dim=.06,bend,tw;
-    if(de<0){const a=E.o3(1+de),b=E.back(1+de);y=lerp(VH*.98,0,a);z=lerp(-320,0,a);rx=lerp(40,7,b);ry=lerp(-4*dir,-12*dir,a);rz=lerp(18*dir,-6*dir,b);op=seg(1+de,0,.12)}
-    else if(!sl.last){const o=E.i3(de);y=-o*VH*1.2;z=o*560;rx=7-o*38;ry=-12*dir+o*10*dir;rz=(-6-o*20)*dir;op=1-seg(de,.78,.96)}
+    const dir=sl.dir;let w=SW,hh=SHH,x=dir*VW*(PHONE?.02:.035),y=PHONE?-VH*.09:0,z=0,rx=7,ry=-12*dir,rz=-6*dir,op=1,dim=.06,bend,tw;
+    if(de<0){const a=E.o3(1+de),b=E.back(1+de);y=lerp(VH*.98,y,a);z=lerp(-320,0,a);rx=lerp(40,7,b);ry=lerp(-4*dir,-12*dir,a);rz=lerp(18*dir,-6*dir,b);op=seg(1+de,0,.12)}
+    else if(!sl.last){const o=E.i3(de);y=y-o*VH*1.2;z=o*560;rx=7-o*38;ry=-12*dir+o*10*dir;rz=(-6-o*20)*dir;op=1-seg(de,.78,.96)}
     const trans=Math.sin(Math.PI*Math.min(1,Math.abs(de)));
     bend=(5+trans*30+av*16*(Math.abs(de)>0?1:.35));tw=(Math.sin(TIME*1.4+k)*3+de*9);
     if(sl.last&&E2.fill){const f=E.io4(seg(s,E2.fill[0],E2.fill[1]));if(f>0){const cw=Math.max(VW,VH*9/16);w=lerp(w,cw,f);hh=lerp(hh,cw*16/9,f);x=lerp(x,0,f);y=lerp(y,0,f);z=lerp(z,0,f);
@@ -648,7 +662,7 @@ function wall(s,av){const [w0,w1]=TL.wall,[c0]=TL.skills;const W=wallLayout();
   const on=s>w0+U.WALLIN*.35&&s<c0+.4;
   const wi=seg(s,w0+U.WALLIN*.2,w1);const sc=E.i3(seg(s,c0,c0+U.SKIN*.9));
   vis(WALL_UI.wu,on?seg(s,w0+U.WALLIN*.5,w1)*(1-seg(s,c0,c0+.3)):0);if(on)light(WALL_UI.wsp,seg(s,w0+U.WALLIN*.5,w1));
-  if(!on&&(s<w0||s>c0+U.SKIN)){HOVER=-1;S($('tip'),'opacity','0');document.body.style.cursor='';return}
+  if(!on&&(s<w0||s>c0+U.SKIN)){HOVER=-1;PICKABLE=[];S($('tip'),'opacity','0');document.body.style.cursor='';return}
   wallRot+=((on&&!MOB?smx*-9:0)-wallRot)*.06;
   /* hover */
   HOVER=-1;const pick=[];
@@ -662,16 +676,19 @@ function wall(s,av){const [w0,w1]=TL.wall,[c0]=TL.skills;const W=wallLayout();
     cd.u.uTex.value=texFor('pvs/'+id+'.mp4',FR(F.frame));
     cd.hover=cd.hover||0;put(cd,{w:p.w*(1+cd.hover*.07),h:p.h*(1+cd.hover*.07),x,y,z:z+cd.hover*70,rx:rx*M,ry:ry,rz:rz*M,bend:(av*10+cd.hover*6)*M,op,gray:match?(1-cd.hover)*.55:1,dim:match?0:.55,glow:cd.hover*.25,ro:300+Math.round((z+cd.hover*70)/4)});
     if(on&&a>.95&&sc===0)pick.push(cd.m)});
-  if(pick.length&&PX>=0&&!THEATRE){ndc.set(PX/VW*2-1,-(PY/VH*2-1));ray.setFromCamera(ndc,cam);
-    /* sheets bend in the shader, so pick against flat planes sized like the card */
-    let best=-1,bd=1e9;CARDS.forEach((cd,i)=>{if(!pick.includes(cd.m))return;const sz=cd.u.uSize.value;const pos=cd.m.position;const q=new THREE.Plane(new THREE.Vector3(0,0,1).applyEuler(cd.m.rotation),0).translate(pos);
-      const hit=new THREE.Vector3();if(!ray.ray.intersectPlane(q,hit))return;const lp=cd.m.worldToLocal(hit.clone());if(Math.abs(lp.x)<sz.x/2&&Math.abs(lp.y)<sz.y/2){const dd=hit.distanceTo(cam.position);if(dd<bd){bd=dd;best=i}}});
-    HOVER=best}
+  PICKABLE=pick;if(pick.length&&PX>=0&&!THEATRE&&!PHONE)HOVER=pickCard();
   CARDS.forEach((cd,i)=>{cd.hover=(cd.hover||0)+((i===HOVER?1:0)-(cd.hover||0))*.15});
-  const tip=$('tip');if(HOVER>=0){const F=FILMS[WALL_ORDER[HOVER]];if(tip._id!==HOVER){tip._id=HOVER;tip.innerHTML=`<b>${L(F.title)}</b><span>${L(F.credit)}</span>`}S(tip,'left',PX+'px');S(tip,'top',PY+'px');S(tip,'opacity','1');document.body.style.cursor='pointer'}
+  wallTip()}
+let PICKABLE=[];
+function pickCard(){if(!PICKABLE.length||PX<0)return-1;ndc.set(PX/VW*2-1,-(PY/VH*2-1));ray.setFromCamera(ndc,cam);
+    /* sheets bend in the shader, so pick against flat planes sized like the card */
+    let best=-1,bd=1e9;CARDS.forEach((cd,i)=>{if(!PICKABLE.includes(cd.m))return;const sz=cd.u.uSize.value;const pos=cd.m.position;const q=new THREE.Plane(new THREE.Vector3(0,0,1).applyEuler(cd.m.rotation),0).translate(pos);
+      const hit=new THREE.Vector3();if(!ray.ray.intersectPlane(q,hit))return;const lp=cd.m.worldToLocal(hit.clone());if(Math.abs(lp.x)<sz.x/2&&Math.abs(lp.y)<sz.y/2){const dd=hit.distanceTo(cam.position);if(dd<bd){bd=dd;best=i}}});
+  return best}
+function wallTip(){const tip=$('tip');if(HOVER>=0){const F=FILMS[WALL_ORDER[HOVER]];if(tip._id!==HOVER){tip._id=HOVER;tip.innerHTML=`<b>${L(F.title)}</b><span>${L(F.credit)}</span>`}S(tip,'left',PX+'px');S(tip,'top',PY+'px');S(tip,'opacity','1');document.body.style.cursor='pointer'}
   else{S(tip,'opacity','0');document.body.style.cursor=''}
 }
-addEventListener('click',e=>{if(THEATRE||HOVER<0)return;if(e.target.closest('button,a'))return;const i=HOVER;openFilm(WALL_ORDER[i],CARDS[i])});
+addEventListener('click',e=>{if(THEATRE)return;if(e.target.closest('button,a'))return;PX=e.clientX;PY=e.clientY;const i=pickCard();if(i<0)return;openFilm(WALL_ORDER[i],CARDS[i])});
 
 /* ---- skills: the craft, each proven by a film on a sheet ---- */
 function skills(s,av){const [k0,k1]=TL.skills;const u=SKUI;
@@ -680,13 +697,13 @@ function skills(s,av){const [k0,k1]=TL.skills;const u=SKUI;
   light(u.sksp,seg(s,k0+U.SKIN*.75,k0+U.SKIN+.25));
   let ai=0;TL.skRest.forEach((r,i)=>{if(s>r-U.SKILL*.3)ai=i});
   u.items.forEach((li,i)=>{const a=i===ai?1:clamp(.26-Math.abs(i-ai)*.02,.12,.3);S(li,'opacity',String(f2(a*E.o3(clamp(o*1.6-i*.04)))));S(li,'transform',`translateX(${i===ai?(LANG==='ar'?-14:14):0}px)`)});
-  if(u.cur!==ai){u.cur=ai;const k=SKILLS[ai];u.skdt.textContent=L(k.d);u.skds.textContent=t_('seen')+': '+L(FILMS[k.film].title);
+  if(u.cur!==ai){u.cur=ai;const k=SKILLS[ai];u.sknow.textContent=L(k.t);u.skdt.textContent=L(k.d);u.skds.textContent=t_('seen')+': '+L(FILMS[k.film].title);
     u.skd.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'})}
   const mob=VW<760,side=LANG==='ar'?-1:1;
   SKILLS.forEach((k,i)=>{const d=(s-TL.skRest[i])/U.SKILL;if(d<-1.05||d>1.05)return;const h=.18;
     const de=d<0?Math.min(0,(d+h)/(1-h)):Math.max(0,(d-h)/(1-h));const dir=i%2?1:-1;
-    const w=mob?Math.min(VW*.62,SHH*.62*9/16):SW*.86,hh=w*16/9;
-    let x=mob?0:side*VW*.2,y=mob?-VH*.12:0,z=0,rx=6,ry=-14*side,rz=-5*dir,op=1;
+    const w=mob?Math.min(VW*.5,VH*.4*9/16):SW*.86,hh=w*16/9;
+    let x=mob?0:side*VW*.2,y=mob?-VH*.03:0,z=0,rx=6,ry=-14*side,rz=-5*dir,op=1;
     if(de<0){const a=E.o3(1+de),b=E.back(1+de);y+=lerp(VH*.95,0,a);z=lerp(-300,0,a);rx=lerp(36,6,b);rz=lerp(16*dir,-5*dir,b);op=seg(1+de,0,.12)}
     else{const q=E.i3(de);y-=q*VH*1.15;z=q*520;rx=6-q*34;rz=(-5-q*18)*dir;op=1-seg(de,.78,.96)}
     if(i===SKILLS.length-1&&d>0)op*=1-seg(s,k1-.1,k1+.2);
