@@ -53,6 +53,10 @@ html[lang=ar] .nav .c{font-family:var(--f-ar)}
 .nav button{pointer-events:auto;padding:0;line-height:1.2;opacity:.85}
 .nav .c,.nav .l,.nav .r{line-height:1.2}.nav .r{align-items:center}.nav button:hover{opacity:1}
 .nav .ar{font-family:var(--f-ar)}
+#navLang{display:inline-flex;align-items:center;border:1px solid rgba(243,239,231,.3);border-radius:999px;padding:2px;gap:2px;opacity:1}
+#navLang span{display:block;padding:4px 9px 5px;border-radius:999px;font:600 11.5px/1 var(--f-body);color:rgba(243,239,231,.6);transition:background .25s,color .25s}
+#navLang span[data-l=ar]{font:600 14px/1 var(--f-ar);padding:3px 10px 4px}
+#navLang span.on{background:var(--paper);color:var(--ink)}
 @media (max-width:760px){.nav{grid-template-columns:1fr auto;padding-top:calc(env(safe-area-inset-top,0px) + 16px)}.nav .l{display:none}.nav .c{text-align:left;font-size:13px}.nav .r{gap:16px;font-size:13px}
   html[dir=rtl] .nav .c{text-align:right}}
 
@@ -147,6 +151,7 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
 
 /* phone slider */
 .carinfo{display:none}
+.carinfo .btn{pointer-events:auto}
 @media (max-width:760px){
  .wallui h2{top:calc(env(safe-area-inset-top,0px) + 11vh)}
  .chips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding:0 16px 2px;bottom:calc(env(safe-area-inset-bottom,0px) + 3.5vh);-webkit-mask:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent)}
@@ -154,7 +159,11 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
  .carinfo{display:grid;justify-items:center;gap:6px;position:absolute;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 3.5vh + 52px);text-align:center}
  .carinfo .ctitle{font:900 clamp(24px,7vw,32px)/1 var(--f-display);letter-spacing:-.02em}
  html[lang=ar] .carinfo .ctitle{font-family:var(--f-ar);letter-spacing:0}
- .carinfo .cnt{color:var(--gold)}
+ .carinfo .cnt{color:var(--gold);min-width:64px;text-align:center}
+ .crow{display:flex;align-items:center;gap:14px;pointer-events:auto}
+ .arr{width:34px;height:34px;border-radius:50%;border:1px solid rgba(243,239,231,.35);font-size:20px;line-height:1;display:grid;place-items:center;padding-bottom:2px;pointer-events:auto}
+ .arr:hover{border-color:var(--gold)}
+ html[dir=rtl] .arr{transform:scaleX(-1)}
  .carinfo .btn{margin-top:6px;padding:11px 18px}
 }
 
@@ -515,7 +524,7 @@ const ui=$('ui');let SKUI,HERO,STM,ERA_UI=[],FILM_UI=[],WALL_UI,CTA,RAIL,HINT,FO
 function buildUI(){
   ui.innerHTML='';document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
   $('navL').textContent=t_('role');$('navName').textContent=L(CONFIG.name);document.title=L(CONFIG.name)+' · '+t_('role');
-  $('navFilms').textContent=t_('films');$('navContact').textContent=t_('contact');$('navLang').textContent=t_('lang');$('skip').textContent=t_('skip');
+  $('navFilms').textContent=t_('films');$('navContact').textContent=t_('contact');$('navLang').innerHTML='<span data-l="en">EN</span><span data-l="ar">ع</span>';$('navLang').querySelectorAll('span').forEach(x=>x.classList.toggle('on',x.dataset.l===LANG));$('navLang').setAttribute('aria-label',LANG==='en'?'Language: English. Switch to Arabic':'اللغة: العربية. التبديل إلى الإنجليزية');$('skip').textContent=t_('skip');
   /* hero */
   const h=el('section','hero ui',ui);h.setAttribute('aria-label',t_('heroTitle'));el('div','shade',h);
   const lt=el('div','lt',h);const cr=el('div','cr',lt,t_('heroCredit'));const bg=el('h1','big',lt);const hs=letters(bg,t_('heroTitle'));
@@ -539,7 +548,7 @@ function buildUI(){
   const chips=['all','brand','ugc','presenter','concept'].map(k=>{const b=el('button','',ch,t_('f')[k]);b.type='button';b.dataset.k=k;b.onclick=()=>{FILTER=k;CAR.target=0;chips.forEach(c=>c.classList.toggle('on',c.dataset.k===k))};return b});
   chips.forEach(c=>c.classList.toggle('on',c.dataset.k===FILTER));
   /* phone slider caption: counter, title, credit, watch */
-  const ci=el('div','carinfo',wu);const cnt=el('div','cnt mono',ci);const ctt=el('div','ctitle',ci);const ccr=el('div','cr',ci);
+  const ci=el('div','carinfo',wu);const cr0=el('div','crow',ci);const pv=el('button','arr',cr0,'‹');pv.type='button';pv.setAttribute('aria-label',t_('prev'));pv.onclick=()=>carStep(LANG==='ar'?1:-1);const cnt=el('div','cnt mono',cr0);const nx=el('button','arr',cr0,'›');nx.type='button';nx.setAttribute('aria-label',t_('next'));nx.onclick=()=>carStep(LANG==='ar'?-1:1);const ctt=el('div','ctitle',ci);const ccr=el('div','cr',ci);
   const cw=el('button','btn w',ci,'▶ '+t_('watch'));cw.type='button';cw.onclick=()=>{const id=carList()[Math.round(CAR.target)];if(id)openFilm(id,CARDS[WALL_ORDER.indexOf(id)])};
   WALL_UI={wu,wsp,ch,ci,cnt,ct:ctt,cc:ccr,cur:null};
   /* skills */
@@ -736,17 +745,28 @@ function wallTip(){const tip=$('tip');if(HOVER>=0){const F=FILMS[WALL_ORDER[HOVE
 }
 function inWall(){const s=sy;return s>TL.wall[0]+U.WALLIN*.6&&s<TL.skills[0]+.2}
 let T0X=0,T0Y=0,T0P=0,TMODE='',TT=0,TV=0,TLX=0;
-addEventListener('touchstart',e=>{if(THEATRE||!PHONE||!inWall()||e.target.closest('button,a,.chips'))return;const t=e.touches[0];T0X=TLX=t.clientX;T0Y=t.clientY;T0P=CAR.pos;TMODE='?';TT=performance.now();TV=0},{passive:true});
-addEventListener('touchmove',e=>{if(!TMODE)return;const t=e.touches[0],dx=t.clientX-T0X,dy=t.clientY-T0Y;
-  if(TMODE==='?'){if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.1){TMODE='x';CAR.drag=true}else if(Math.abs(dy)>10){TMODE='';return}}
-  if(TMODE==='x'){e.preventDefault();const side=LANG==='ar'?-1:1,n=carList().length,step=carSize().w*.82;let p=T0P-side*dx/step;
-    if(p<0)p*=.35;if(p>n-1)p=n-1+(p-n+1)*.35;TV=(t.clientX-TLX);TLX=t.clientX;CAR.pos=p}},{passive:false});
-addEventListener('touchend',e=>{if(!TMODE)return;const side=LANG==='ar'?-1:1,n=carList().length;
+/* one gesture model for touch, mouse and pen: drag to browse, tap the centre to watch, tap a side film to bring it forward */
+function carStep(d){const n=carList().length;CAR.target=clamp(Math.round(CAR.target)+d,0,n-1)}
+function gStart(x,y,target){if(THEATRE||!PHONE||!inWall()||target.closest('button,a,.chips'))return false;T0X=TLX=x;T0Y=y;T0P=CAR.pos;TMODE='?';TT=performance.now();TV=0;return true}
+function gMove(x,y){if(!TMODE)return false;const dx=x-T0X,dy=y-T0Y;
+  if(TMODE==='?'){if(Math.abs(dx)>7&&Math.abs(dx)>Math.abs(dy)*1.1){TMODE='x';CAR.drag=true;document.body.style.cursor='grabbing'}else if(Math.abs(dy)>10){TMODE='';return false}}
+  if(TMODE==='x'){const side=LANG==='ar'?-1:1,n=carList().length,step=carSize().w*.82;let p=T0P-side*dx/step;
+    if(p<0)p*=.35;if(p>n-1)p=n-1+(p-n+1)*.35;TV=x-TLX;TLX=x;CAR.pos=p;return true}return false}
+function gEnd(x,y){if(!TMODE)return;const side=LANG==='ar'?-1:1,n=carList().length;
   if(TMODE==='x'){CAR.drag=false;CAR.target=clamp(Math.round(CAR.pos-side*TV*.06),0,n-1)}
-  else if(TMODE==='?'&&performance.now()-TT<450){const t=e.changedTouches[0],cx=VW/2,z=carSize();const dx=(t.clientX-cx)*side;
-    if(Math.abs(dx)<z.w*.5&&Math.abs(t.clientY-(VH/2+VH*.07))<z.h*.55){const id=carList()[Math.round(CAR.target)];if(id)openFilm(id,CARDS[WALL_ORDER.indexOf(id)])}
-    else if(Math.abs(t.clientY-(VH/2+VH*.07))<z.h*.5)CAR.target=clamp(Math.round(CAR.target)+(dx>0?1:-1),0,n-1)}
-  TMODE=''},{passive:true});
+  else if(performance.now()-TT<500){const z=carSize(),cy=VH/2-VH*.07,dx=(x-VW/2)*side;
+    if(Math.abs(y-cy)<z.h*.55){if(Math.abs(dx)<z.w*.5){const id=carList()[Math.round(CAR.target)];if(id)openFilm(id,CARDS[WALL_ORDER.indexOf(id)])}else carStep(dx>0?1:-1)}}
+  TMODE='';document.body.style.cursor=''}
+addEventListener('touchstart',e=>{const t=e.touches[0];gStart(t.clientX,t.clientY,e.target)},{passive:true});
+addEventListener('touchmove',e=>{const t=e.touches[0];if(gMove(t.clientX,t.clientY))e.preventDefault()},{passive:false});
+addEventListener('touchend',e=>{const t=e.changedTouches[0];gEnd(t.clientX,t.clientY)},{passive:true});
+addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.button!==0)return;if(gStart(e.clientX,e.clientY,e.target))e.preventDefault()});
+addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;gMove(e.clientX,e.clientY);if(!TMODE&&PHONE&&inWall()&&!THEATRE)document.body.style.cursor=e.target.closest('button,a,.chips')?'':'grab'});
+addEventListener('pointerup',e=>{if(e.pointerType==='touch')return;gEnd(e.clientX,e.clientY)});
+/* trackpad: a sideways swipe browses; vertical scrolling still moves the page */
+let WACC=0,WLAST=0;addEventListener('wheel',e=>{if(THEATRE||!PHONE||!inWall()||Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();
+  const now=performance.now();WACC+=e.deltaX;if(Math.abs(WACC)>50&&now-WLAST>260){carStep((WACC>0?1:-1)*(LANG==='ar'?-1:1));WACC=0;WLAST=now}},{passive:false});
+addEventListener('keydown',e=>{if(THEATRE||!PHONE||!inWall())return;const side=LANG==='ar'?-1:1;if(e.key==='ArrowRight'){carStep(side);e.preventDefault()}else if(e.key==='ArrowLeft'){carStep(-side);e.preventDefault()}});
 addEventListener('click',e=>{if(THEATRE||PHONE)return;if(e.target.closest('button,a'))return;PX=e.clientX;PY=e.clientY;const i=pickCard();if(i<0)return;openFilm(WALL_ORDER[i],CARDS[i])});
 
 /* ---- skills: the craft, each proven by a film on a sheet ---- */
