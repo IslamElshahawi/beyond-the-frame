@@ -155,6 +155,7 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
  .wallui h2{top:calc(env(safe-area-inset-top,0px) + 11vh)}
  .chips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding:0 16px 2px;bottom:calc(env(safe-area-inset-bottom,0px) + 3.5vh);-webkit-mask:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent)}
  .chips::-webkit-scrollbar{display:none}.chips button{flex:none}
+ .chips{pointer-events:auto;cursor:grab;overscroll-behavior-x:contain}
  .carinfo{display:grid;justify-items:center;gap:6px;position:absolute;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 3.5vh + 52px);text-align:center}
  .carinfo .ctitle{font:900 clamp(24px,7vw,32px)/1 var(--f-display);letter-spacing:-.02em}
  html[lang=ar] .carinfo .ctitle{font-family:var(--f-ar);letter-spacing:0}
@@ -201,6 +202,9 @@ html[lang=ar] .foot b,html[lang=ar] .foot span{font-family:var(--f-ar);letter-sp
 #th .ctl button{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;color:#fff;background:rgba(0,0,0,.25)}
 #th .ctl button:hover{border-color:var(--gold)}
 #th .x{display:grid;place-items:center}
+#thBox{container-type:inline-size}
+@container (max-width:290px){#th .ctl{gap:8px 7px;padding:44px 10px 10px}#th .ctl button{width:32px;height:32px}#th .ctl .tc{font-size:10.5px!important}}
+@container (max-width:235px){#thTime{display:none!important}}
 #thBox:fullscreen{border-radius:0;width:100vw;height:100vh;aspect-ratio:auto;background:#000}#thBox:fullscreen video{object-fit:contain}
 #thBox:-webkit-full-screen{border-radius:0;width:100vw;height:100vh;aspect-ratio:auto;background:#000}#thBox:-webkit-full-screen video{object-fit:contain}
 .btn svg{flex:none}
@@ -222,7 +226,7 @@ html[lang=ar] #th aside .k{font-family:var(--f-ar);letter-spacing:0;font-size:12
 #th .x{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);right:22px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);font-size:18px}
 #th .nv{display:flex;gap:10px}
 #th .nv button{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:600 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
-@media (max-width:860px){#th{display:block;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}#th .in{grid-template-columns:minmax(0,1fr);justify-items:center;padding:calc(env(safe-area-inset-top,0px) + 74px) 16px calc(env(safe-area-inset-bottom,0px) + 32px)}#th .vb{height:auto;width:min(100%,calc(64vh * 9 / 16))}#th aside{width:100%;max-width:520px;min-width:0}#th .more{max-width:100%}#th .x{position:fixed;z-index:2;background:rgba(6,6,7,.7)}}
+@media (max-width:860px){#th{display:block;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}#th .in{grid-template-columns:minmax(0,1fr);justify-items:center;padding:calc(env(safe-area-inset-top,0px) + 74px) 16px calc(env(safe-area-inset-bottom,0px) + 32px)}#th .vb{height:auto;width:min(100%,max(260px,calc(64vh * 9 / 16)))}#th aside{width:100%;max-width:520px;min-width:0}#th .more{max-width:100%}#th .x{position:fixed;z-index:2;background:rgba(6,6,7,.7)}}
 
 #vids{position:fixed;left:0;top:0;width:2px;height:2px;opacity:.001;pointer-events:none;overflow:hidden;z-index:-2}
 #vids video{width:2px;height:2px}
@@ -568,7 +572,7 @@ function buildUI(){
     const cs=el('div','case ui',ui,`<div><span>${t_('brief')}</span>${L(F.brief)}</div><div><span>${t_('role2')}</span>${L(F.role)}</div>`);return{fb,cr,sp,pl,cs}});
   /* wall */
   const wu=el('section','wallui ui',ui);const wh=el('h2','',wu);const wsp=letters(wh,t_('wall'));const ch=el('div','chips',wu);
-  const chips=['all','brand','ugc','presenter','concept'].map(k=>{const b=el('button','',ch,t_('f')[k]);b.type='button';b.dataset.k=k;b.onclick=()=>{FILTER=k;CAR.target=0;chips.forEach(c=>c.classList.toggle('on',c.dataset.k===k))};return b});
+  const chips=['all','brand','ugc','presenter','concept'].map(k=>{const b=el('button','',ch,t_('f')[k]);b.type='button';b.dataset.k=k;b.onclick=()=>{const br=b.getBoundingClientRect(),cr=ch.getBoundingClientRect();glideX(ch,ch.scrollLeft+((br.left+br.width/2)-(cr.left+cr.width/2)));FILTER=k;CAR.target=0;chips.forEach(c=>c.classList.toggle('on',c.dataset.k===k))};return b});
   chips.forEach(c=>c.classList.toggle('on',c.dataset.k===FILTER));
   /* phone slider caption: counter, title, credit, watch */
   const ci=el('div','carinfo',wu);const cr0=el('div','crow',ci);const pv=el('button','arr',cr0,ICON.left);pv.type='button';pv.setAttribute('aria-label',LANG==='ar'?t_('next'):t_('prev'));pv.onclick=()=>carStep(LANG==='ar'?1:-1);const cnt=el('div','cnt mono',cr0);const nx=el('button','arr',cr0,ICON.right);nx.type='button';nx.setAttribute('aria-label',LANG==='ar'?t_('prev'):t_('next'));nx.onclick=()=>carStep(LANG==='ar'?-1:1);const ctt=el('div','ctitle',ci);const ccr=el('div','cr',ci);
@@ -787,7 +791,16 @@ addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.button!==0)retu
 addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;gMove(e.clientX,e.clientY);if(!TMODE&&PHONE&&inWall()&&!THEATRE)document.body.style.cursor=e.target.closest('button,a,.chips')?'':'grab'});
 addEventListener('pointerup',e=>{if(e.pointerType==='touch')return;gEnd(e.clientX,e.clientY)});
 /* trackpad: a sideways swipe browses; vertical scrolling still moves the page */
-let WACC=0,WLAST=0;addEventListener('wheel',e=>{if(THEATRE||!PHONE||!inWall()||Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();
+/* own easing for sideways scrolls (Chrome skips smooth scrolling on right-to-left rows) */
+function glideX(el,to){const from=el.scrollLeft,t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/420),e=1-Math.pow(1-k,3);el.scrollLeft=from+(to-from)*e;if(k<1)requestAnimationFrame(f)})(t0)}
+/* filters: wheel and mouse drag scroll the row; a mouse wheel's vertical turn becomes sideways */
+const chipsEl=()=>WALL_UI&&WALL_UI.ch;
+addEventListener('wheel',e=>{const c=chipsEl();if(!c||!e.target.closest||!e.target.closest('.chips')||c.scrollWidth<=c.clientWidth+2)return;
+  e.preventDefault();const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;c.style.scrollBehavior='auto';c.scrollLeft+=d*(LANG==='ar'?-1:1);c.style.scrollBehavior=''},{passive:false});
+let CD=null;addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||!e.target.closest||!e.target.closest('.chips'))return;const c=chipsEl();CD={x:e.clientX,l:c.scrollLeft,moved:false}});
+addEventListener('pointermove',e=>{if(!CD)return;const c=chipsEl(),dx=e.clientX-CD.x;if(Math.abs(dx)>4)CD.moved=true;if(CD.moved){c.style.scrollBehavior='auto';c.scrollLeft=CD.l-dx}});
+addEventListener('pointerup',()=>{const c=chipsEl();if(c)c.style.scrollBehavior='';if(CD&&CD.moved){const stop=ev=>{ev.stopPropagation();ev.preventDefault()};addEventListener('click',stop,{capture:true,once:true});setTimeout(()=>removeEventListener('click',stop,{capture:true}),50)}CD=null});
+let WACC=0,WLAST=0;addEventListener('wheel',e=>{if(THEATRE||!PHONE||!inWall()||Math.abs(e.deltaX)<=Math.abs(e.deltaY)||(e.target.closest&&e.target.closest('.chips')))return;e.preventDefault();
   const now=performance.now();WACC+=e.deltaX;if(Math.abs(WACC)>50&&now-WLAST>260){carStep((WACC>0?1:-1)*(LANG==='ar'?-1:1));WACC=0;WLAST=now}},{passive:false});
 addEventListener('keydown',e=>{if(THEATRE||!PHONE||!inWall())return;const side=LANG==='ar'?-1:1;if(e.key==='ArrowRight'){carStep(side);e.preventDefault()}else if(e.key==='ArrowLeft'){carStep(-side);e.preventDefault()}});
 addEventListener('click',e=>{if(THEATRE||PHONE)return;if(e.target.closest('button,a'))return;PX=e.clientX;PY=e.clientY;const i=pickCard();if(i<0)return;openFilm(WALL_ORDER[i],CARDS[i])});
