@@ -55,7 +55,6 @@ html[lang=ar] .nav .c{font-family:var(--f-ar)}
 .nav .ar{font-family:var(--f-ar)}
 #navLang{display:inline-flex;align-items:center;border:1px solid rgba(243,239,231,.3);border-radius:999px;padding:2px;gap:2px;opacity:1}
 #navLang span{display:block;padding:4px 9px 5px;border-radius:999px;font:600 11.5px/1 var(--f-body);color:rgba(243,239,231,.6);transition:background .25s,color .25s}
-#navLang span[data-l=ar]{font:600 14px/1 var(--f-ar);padding:3px 10px 4px}
 #navLang span.on{background:var(--paper);color:var(--ink)}
 @media (max-width:760px){.nav{grid-template-columns:1fr auto;padding-top:calc(env(safe-area-inset-top,0px) + 16px)}.nav .l{display:none}.nav .c{text-align:left;font-size:13px}.nav .r{gap:16px;font-size:13px}
   html[dir=rtl] .nav .c{text-align:right}}
@@ -524,7 +523,7 @@ const ui=$('ui');let SKUI,HERO,STM,ERA_UI=[],FILM_UI=[],WALL_UI,CTA,RAIL,HINT,FO
 function buildUI(){
   ui.innerHTML='';document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
   $('navL').textContent=t_('role');$('navName').textContent=L(CONFIG.name);document.title=L(CONFIG.name)+' · '+t_('role');
-  $('navFilms').textContent=t_('films');$('navContact').textContent=t_('contact');$('navLang').innerHTML='<span data-l="en">EN</span><span data-l="ar">ع</span>';$('navLang').querySelectorAll('span').forEach(x=>x.classList.toggle('on',x.dataset.l===LANG));$('navLang').setAttribute('aria-label',LANG==='en'?'Language: English. Switch to Arabic':'اللغة: العربية. التبديل إلى الإنجليزية');$('skip').textContent=t_('skip');
+  $('navFilms').textContent=t_('films');$('navContact').textContent=t_('contact');$('navLang').innerHTML='<span data-l="en">EN</span><span data-l="ar">AR</span>';$('navLang').querySelectorAll('span').forEach(x=>x.classList.toggle('on',x.dataset.l===LANG));$('navLang').setAttribute('aria-label',LANG==='en'?'Language: English. Switch to Arabic':'اللغة: العربية. التبديل إلى الإنجليزية');$('skip').textContent=t_('skip');
   /* hero */
   const h=el('section','hero ui',ui);h.setAttribute('aria-label',t_('heroTitle'));el('div','shade',h);
   const lt=el('div','lt',h);const cr=el('div','cr',lt,t_('heroCredit'));const bg=el('h1','big',lt);const hs=letters(bg,t_('heroTitle'));
