@@ -70,6 +70,24 @@ html[lang=ar] .nav .c{font-family:var(--f-ar)}
   html[dir=rtl] .nav .c{text-align:right}.nav{column-gap:14px}}
 @media (max-width:400px){.nav .c{font-size:11.5px;letter-spacing:.03em}.nav .r{gap:11px;font-size:12px}#navLang span{padding:4px 7px 5px}}
 
+/* chapters: desktop rail = page index; phone = one button + sheet; a thin progress line */
+#navChap{display:none;align-items:center;gap:5px;font-variant-numeric:tabular-nums;border:1px solid rgba(243,239,231,.3);border-radius:999px;padding:5px 10px 5px 11px!important;opacity:1!important;white-space:nowrap}
+#navChap svg{opacity:.7;transition:transform .3s}#navChap[aria-expanded=true] svg{transform:rotate(180deg)}
+#prog{position:fixed;left:0;right:0;top:0;height:2px;z-index:21;pointer-events:none;background:rgba(243,239,231,.08)}
+#prog i{position:absolute;inset:0;background:var(--gold);transform-origin:0 50%;transform:scaleX(0)}
+html[dir=rtl] #prog i{transform-origin:100% 50%}
+#cut{position:fixed;inset:0;z-index:30;background:var(--ink);opacity:0;pointer-events:none}
+#chap{position:fixed;inset:0;z-index:19;background:rgba(8,8,9,.82);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);overflow-y:auto;overscroll-behavior:contain;padding:calc(env(safe-area-inset-top,0px) + 76px) 24px calc(env(safe-area-inset-bottom,0px) + 28px)}
+#chap ol{list-style:none;margin:0 auto;padding:0;max-width:420px;display:grid;gap:2px}
+#chap button{width:100%;display:grid;grid-template-columns:3.4em 1fr;align-items:baseline;gap:10px;padding:11px 4px;text-align:start;border-bottom:1px solid rgba(243,239,231,.1)}
+#chap li:last-child button{border-bottom:0}
+#chap button b{font:800 22px/1.1 var(--f-display);letter-spacing:-.01em;color:rgba(243,239,231,.62);transition:color .2s}
+html[lang=ar] #chap button b{font-family:var(--f-ar);letter-spacing:0}
+#chap button i{font:500 11px var(--f-mono);font-style:normal;letter-spacing:.1em;color:var(--dim);font-variant-numeric:tabular-nums}
+html[lang=ar] #chap button i{font-family:var(--f-ar);letter-spacing:0;font-size:12px}
+#chap button.on b,#chap button:hover b{color:var(--paper)}#chap button.on i{color:var(--gold)}
+@media (max-width:760px){#navFilms,#navContact{display:none}#navChap{display:inline-flex}}
+
 /* hero */
 .hero{position:fixed;inset:0;z-index:6}
 .hero .shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,5,6,.78),transparent 52%),linear-gradient(90deg,rgba(5,5,6,.45),transparent 50%)}
@@ -124,10 +142,12 @@ html[lang=ar] .case span{font-family:var(--f-ar);letter-spacing:0;font-size:12px
 @media (max-width:760px){.case{display:none}.fb{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 6vh);transform:none}.ttl{font-size:clamp(32px,9.5vw,50px)}.fb .cr{margin-bottom:8px}.fb .rm{display:block;margin:10px auto 0;max-width:34ch;font-size:13px;line-height:1.4;color:#d9d3c8}.play{width:52px;height:52px;margin-top:14px}}
 
 /* rail */
-.rail{position:fixed;right:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);z-index:9;display:grid;gap:10px;justify-items:end}
+.rail{position:fixed;right:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);z-index:9;display:grid;gap:9px;justify-items:end}
+.rail .sep{height:6px}
 .rail button{font:500 11px var(--f-mono);letter-spacing:.1em;color:rgba(243,239,231,.62);padding:3px 0;display:flex;align-items:center;gap:8px;pointer-events:auto}
 .rail button:after{content:"";width:14px;height:1px;background:currentColor;transition:width .3s}
 .rail button:hover{color:var(--paper)}.rail button.on{color:var(--paper)}.rail button.on:after{width:28px;background:var(--gold)}
+html[lang=ar] .rail button{font-family:var(--f-ar);letter-spacing:0;font-size:12px}
 html[dir=rtl] .rail{right:auto;left:clamp(16px,3vw,40px);justify-items:start}
 @media (max-width:760px){.rail{display:none}}
 
@@ -195,10 +215,10 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
 .cc b{font:700 14.5px/1.2 var(--f-body)}
 html[lang=ar] .cc b{font-family:var(--f-ar)}
 .cc .tx span{font:500 11.5px/1.3 var(--f-mono);color:var(--dim);overflow-wrap:anywhere}
-@media (min-width:1021px){.cc{padding-inline-end:18px}.cc .tx span{overflow-wrap:normal;white-space:nowrap}}
+@media (min-width:1241px){.cc{padding-inline-end:18px}.cc .tx span{overflow-wrap:normal;white-space:nowrap}}
 html[dir=rtl] .cc .tx span{text-align:right}
 @media (max-width:520px){.contact{grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:auto!important;gap:8px!important;width:min(380px,100%)!important;margin-top:28px!important}.cta{top:46%}}
-@media (max-width:1020px){.contact{grid-template-columns:repeat(2,minmax(0,1fr));width:min(620px,100%)}}
+@media (max-width:1240px){.contact{grid-template-columns:repeat(2,minmax(0,1fr));width:min(620px,100%)}}
 @media (max-width:760px){.contact{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:26px}.cc{padding:10px;gap:10px;border-radius:15px}.cc .ic{width:36px;height:36px;border-radius:11px}.cc b{font-size:13.5px}.cc .tx span{font-size:10.5px}}
 .cta .ct{margin-top:20px;color:#cfc9be;font-size:14px;user-select:text;pointer-events:auto}
 .cta .btn svg{flex:none}
@@ -275,11 +295,15 @@ html[lang=ar] #th .nv button{font-family:var(--f-ar);letter-spacing:0;font-size:
   <nav class="r" aria-label="Site">
     <button type="button" id="navFilms"></button>
     <button type="button" id="navContact"></button>
+    <button type="button" id="navChap" aria-haspopup="true" aria-expanded="false" aria-controls="chap"><span id="navChapT"></span><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></svg></button>
     <button type="button" id="navLang" class="ar"></button>
   </nav>
 </header>
 
 <main id="ui"></main>
+<div id="chap" hidden><nav aria-label="Chapters"><ol id="chapList"></ol></nav></div>
+<div id="cut" aria-hidden="true"></div>
+<div id="prog" aria-hidden="true"><i></i></div>
 <div class="tip" id="tip"></div>
 <div class="loader" id="loader"><div class="mono" style="color:var(--dim)">Islam Elshahawi</div></div>
 
@@ -407,13 +431,13 @@ const HERO_I=5;
 const T={
  en:{role:'AI film director',films:'Films',contact:'Contact',motionOn:'Motion on',motionOff:'Motion off',lang:'ع',
   heroCredit:'Creative-AI internship campaign · I led the team',heroTitle:'Welcome to the Future',watch:'Watch film',all:'All 11 films',sFilms:'films',sBrands:'Gulf brands',hint:'Scroll to open the frame',
-  st:['Every image ever made','began as light','in a dark room.'],brief:'Brief',idea:'Idea',role2:'My role',more:'More films',prev:'Previous',next:'Next',close:'Close',playPause:'Play or pause',seek:'Seek',sound:'Sound on or off',fsl:'Full screen',eras:'Eras',keys:'Space · ← → · M · Esc',
+  st:['Every image ever made','began as light','in a dark room.'],brief:'Brief',idea:'Idea',role2:'My role',more:'More films',prev:'Previous',next:'Next',close:'Close',playPause:'Play or pause',seek:'Seek',sound:'Sound on or off',fsl:'Full screen',eras:'Chapters',chIntro:'Intro',chFilms:'Films',chCraft:'Craft',chContact:'Contact',keys:'Space · ← → · M · Esc',
   wall:'Watch everything.',f:{all:'All 11',brand:'Brand films',ugc:'AI UGC',presenter:'AI presenters',concept:'Concepts'},
   skS:'What I do on every film',skH:'The craft',seen:'Seen in',tools:'Tools: DaVinci Resolve · AI image and video generation',
   c1:'There’s more to be seen.',c2:'Let’s make it.',wa:'WhatsApp',em:'Email',li:'LinkedIn',mq:'Mostaql',ct:'Contact details coming soon.',foot:'AI film director · Beyond the Frame',skip:'Skip to all films'},
  ar:{role:'مخرج أفلام بالذكاء الاصطناعي',films:'الأعمال',contact:'تواصل',motionOn:'الحركة: تعمل',motionOff:'الحركة: متوقفة',lang:'EN',
   heroCredit:'حملة برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق',heroTitle:'مرحبًا بالمستقبل',watch:'شاهد الفيلم',all:'كل الأفلام (١١)',sFilms:'فيلمًا',sBrands:'علامات خليجية',hint:'مرّر لفتح الإطار',
-  st:['كل صورة صُنعت يومًا','بدأت بضوء','في غرفة مظلمة.'],brief:'الموجز',idea:'الفكرة',role2:'دوري',more:'أفلام أخرى',prev:'السابق',next:'التالي',close:'إغلاق',playPause:'تشغيل أو إيقاف',seek:'التقدّم',sound:'الصوت',fsl:'ملء الشاشة',eras:'العصور',keys:'مسافة · ← → · M · Esc',
+  st:['كل صورة صُنعت يومًا','بدأت بضوء','في غرفة مظلمة.'],brief:'الموجز',idea:'الفكرة',role2:'دوري',more:'أفلام أخرى',prev:'السابق',next:'التالي',close:'إغلاق',playPause:'تشغيل أو إيقاف',seek:'التقدّم',sound:'الصوت',fsl:'ملء الشاشة',eras:'الفصول',chIntro:'البداية',chFilms:'الأعمال',chCraft:'الحرفة',chContact:'تواصل',keys:'مسافة · ← → · M · Esc',
   wall:'شاهد كل شيء.',f:{all:'الكل',brand:'أفلام العلامات',ugc:'UGC بالذكاء الاصطناعي',presenter:'مقدّمون',concept:'أفكار'},
   skS:'ما أقوم به في كل فيلم',skH:'الحرفة',seen:'في فيلم',tools:'الأدوات: دافنشي ريزولف · توليد الصور والفيديو بالذكاء الاصطناعي',
   c1:'هناك المزيد لنراه.',c2:'لنصنعه معًا.',wa:'واتساب',em:'البريد',li:'لينكدإن',mq:'مستقل',ct:'بيانات التواصل قريبًا.',foot:'مخرج أفلام بالذكاء الاصطناعي · ما وراء الإطار',skip:'انتقل إلى كل الأفلام'}
@@ -552,8 +576,8 @@ function syncVideos(){for(const k in VIDS){const o=VIDS[k];if(o.want&&!THEATRE){
   else if(o.on||!o.v.paused){o.on=false;o.v.pause()}o.want=false}}
 
 /* ===================== timeline (units: viewport heights of scroll) ===================== */
-const U={SKIN:.7,SKILL:.6,OPEN:1.25,STATE:1.25,BLOOM:1.1,INTRO:.95,FILM:1.2,FILL:.75,BURN:1.0,WALLIN:1.3,WALLHOLD:1.1,CLOSE:1.7};
-let TL,SLOTS;
+const U={SKIN:.6,SKILL:.45,OPEN:1.0,STATE:1.0,BLOOM:.9,INTRO:.75,FILM:.92,FILL:.6,BURN:.8,WALLIN:1.0,WALLHOLD:.8,CLOSE:1.35};
+let TL,SLOTS,CH=[],CHUR=-1,STOPS=[];
 function build(){let s=0;TL={open:[0,U.OPEN]};s=U.OPEN;TL.state=[s,s+U.STATE];s+=U.STATE;TL.bloom=[s,s+U.BLOOM];s+=U.BLOOM;
   TL.eras=[];SLOTS=[];let g=0;
   ERAS.forEach((Er,i)=>{const era={i,start:i===0?TL.bloom[0]:s,intro:[s,s+U.INTRO]};s+=U.INTRO;
@@ -564,7 +588,7 @@ function build(){let s=0;TL={open:[0,U.OPEN]};s=U.OPEN;TL.state=[s,s+U.STATE];s+
     era.end=s;TL.eras.push(era)});
   TL.wall=TL.eras[ERAS.length-1].wall;TL.hold=[s,s+U.WALLHOLD];s+=U.WALLHOLD;
   TL.skills=[s,s+U.SKIN+SKILLS.length*U.SKILL+.35];TL.skRest=SKILLS.map((_,i)=>s+U.SKIN+(i+.5)*U.SKILL);s=TL.skills[1];TL.close=[s,s+U.CLOSE];s+=U.CLOSE;TL.total=s}
-build();
+build();chapters();stops();
 
 /* ===================== DOM layer ===================== */
 const ui=$('ui');let SKUI,HERO,STM,ERA_UI=[],FILM_UI=[],WALL_UI,CTA,RAIL,HINT,FOOT;
@@ -576,7 +600,7 @@ function buildUI(){
   const h=el('section','hero ui',ui);h.setAttribute('aria-label',t_('heroTitle'));el('div','shade',h);
   const lt=el('div','lt',h);const cr=el('div','cr',lt,t_('heroCredit'));const bg=el('h1','big',lt);const hs=letters(bg,t_('heroTitle'));
   const bt=el('div','btns',lt);const w=el('button','btn w',bt,ICON.play+'<span>'+t_('watch')+'</span>');w.type='button';w.onclick=()=>openFilm('campaign_full_01');
-  const a=el('button','btn o',bt,t_('all'));a.type='button';a.onclick=()=>jumpTo(TL.hold[0]+.15);
+  const a=el('button','btn o',bt,t_('all'));a.type='button';a.onclick=()=>cutTo(TL.hold[0]+.15);
   const rt=el('div','rt',h,`<div class="stat"><b>11</b><span class="cr">${t_('sFilms')}</span></div><div class="stat"><b>5</b><span class="cr">${t_('sBrands')}</span></div>`);
   HERO={h,cr,hs,bt,rt,sh:h.querySelector('.shade')};
   HINT=el('div','hint mono',ui,t_('hint'));
@@ -613,7 +637,8 @@ function buildUI(){
   const ct=el('div','ct',c);
   CTA={c,s1,s2,cb,ct};FOOT=el('footer','foot ui',ui,`<b>${L(CONFIG.name)}</b><span>${t_('foot')}</span>`);
   /* rail */
-  RAIL=el('nav','rail ui',ui);RAIL.setAttribute('aria-label',t_('eras'));RAIL.btns=ERAS.map((Er,i)=>{const b=el('button','',RAIL,Er.year);b.type='button';b.onclick=()=>jumpTo(TL.eras[i].intro[0]+U.INTRO*.5);return b});
+  RAIL=el('nav','rail ui',ui);RAIL.setAttribute('aria-label',t_('eras'));RAIL.btns=CH.map((c,i)=>{const b=el('button','',RAIL,c.rail);b.type='button';b.onclick=()=>cutTo(c.go);if(c.sep)el('span','sep',RAIL);return b});
+  $('chapList').innerHTML='';CH.forEach(c=>{const li=el('li','',$('chapList'));const b=el('button','',li,`<i>${c.num}</i><b>${c.name}</b>`);b.type='button';b.onclick=()=>{chapOpen(false);cutTo(c.go)}});$('chap').querySelector('nav').setAttribute('aria-label',t_('eras'));CHUR=-1;
   $('th').querySelectorAll('[data-t]').forEach(x=>x.textContent=t_(x.dataset.t==='role'?'role2':x.dataset.t));const ar=LANG==='ar';$('thPrev').innerHTML=(ar?ICON.right:ICON.left)+'<span>'+t_('prev')+'</span>';$('thNext').innerHTML='<span>'+t_('next')+'</span>'+(ar?ICON.left:ICON.right);
   [['thX','close'],['thPlay','playPause'],['thSeek','seek'],['thMute','sound'],['thFs','fsl']].forEach(([i,k])=>$(i).setAttribute('aria-label',t_(k)));$('thKeys').textContent=t_('keys');
   buildNoGL();
@@ -648,7 +673,7 @@ function step(now){const dt=Math.min(.05,(now-last)/1000);last=now;TIME+=dt;
   smx+=(mx-smx)*Math.min(1,dt*3);smy+=(my-smy)*Math.min(1,dt*3);
   const s=sy;if(!START)START=now;introT=Math.max((now-START)/1000,s*12);CAMK=1;
   for(const k of [HERO_SH,...SLICES,...SH,...SHD,...CARDS,...STRIPS,...SKS,...SKSD])if(k)k.used=false;
-  opening(s,av);eras(s,av);wall(s,av);skills(s,av);closing(s);
+  opening(s,av);eras(s,av);wall(s,av);skills(s,av);closing(s);chapUI(s);
   plateU.uTime.value=TIME;plateU.uMouse.value.set(smx*M,-smy*M);
   for(const k of [HERO_SH,...SLICES,...SH,...SHD,...CARDS,...STRIPS,...SKS,...SKSD])if(k&&!k.used)k.m.visible=false;
   CK+=(CAMK-CK)*Math.min(1,dt*8);cam.position.x=smx*VW*.012*M*CK;cam.position.y=-smy*VH*.01*M*CK;cam.lookAt(0,0,0);cam.rotation.z+=clamp(vel,-2.5,2.5)*.006*M*CK;
@@ -661,7 +686,7 @@ function frame(now){try{step(now)}catch(e){console.error(e)}requestAnimationFram
 function opening(s,av){
   const tO=introT,sw=VW<760?VW*.1:VW*.052,sh=Math.min(VH*.6,sw*6.6),gap=sw*1.16,drift=Math.min(tO,6)*VW*.0035;
   const hot=E.io3(seg(tO,2.0,2.8));
-  const e=E.io4(seg(s,.06,.95));
+  const OP=TL.open[1],e=E.io4(seg(s,.06,OP*.76));
   const showOpen=s<TL.state[1]+.2;
   STRIP.forEach(([id,fr],i)=>{if(i===HERO_I)return;const sl=SLICES[i];if(!showOpen&&s>TL.open[1]+.3)return;
     const a=E.o4(seg(tO,.2+i*.055,1.45+i*.055));const dir=Math.sign(i-HERO_I);
@@ -681,7 +706,7 @@ function opening(s,av){
   if(s<b1&&op>0){HERO_SH.u.uTex.value=texFor('hero/campaign.mp4','hero/campaign.jpg');
     const hk=hot*(1-e);put(HERO_SH,{w,h:h*(1+hk*.08),x,y,z,rx,ry,rz,bend,tw,dim,op,gray:1-hot,offY:.35*(1-e2),glow:hk*.35,ro:5,sheen:clamp(seg(tO,2.0,3.2)*1.6,0,1.6),shA:hk*.6})}
   /* DOM */
-  const hu=seg(s,.82,1.12)*(1-seg(s,TL.open[1]+.02,TL.open[1]+.3));vis(HERO.h,hu>0?1:0);
+  const hu=seg(s,OP*.66,OP*.9)*(1-seg(s,OP+.02,OP+.3));vis(HERO.h,hu>0?1:0);
   S(HERO.sh,'opacity',String(f2(E.o3(hu))));rise(HERO.hs,hu);
   [HERO.cr,HERO.bt,HERO.rt].forEach((p,i)=>{const k=E.o4(clamp(hu*1.4-.15*i));S(p,'opacity',String(f2(k)));S(p,'transform',`translateY(${f2((1-k)*14)}px)`)});
   vis(HINT,seg(tO,2.6,3.2)*(1-seg(s,.02,.12)));
@@ -694,7 +719,7 @@ function opening(s,av){
 function setPlateB(i){const o=img(ERAS[i].art);plateU.tB.value=o.t;plateU.aB.value=o.ar;plateU.uFx.value=ERAS[i].fx}
 function eras(s,av){
   const last=TL.eras[TL.eras.length-1];
-  if(s<TL.bloom[0]){ERA_UI.forEach(u=>{vis(u.e,0);vis(u.lb,0)});FILM_UI.forEach(u=>{vis(u.fb,0);vis(u.cs,0)});RAIL.classList.remove('on');vis(RAIL,0);return}
+  if(s<TL.bloom[0]){ERA_UI.forEach(u=>{vis(u.e,0);vis(u.lb,0)});FILM_UI.forEach(u=>{vis(u.fb,0);vis(u.cs,0)});return}
   /* which era owns the plate */
   let cur=0;TL.eras.forEach((e,i)=>{if(s>=(i===0?TL.bloom[0]:TL.eras[i-1].burn[0]))cur=i});
   const era=TL.eras[cur];setPlateB(cur);
@@ -717,7 +742,6 @@ function eras(s,av){
     const o=seg(s,st,st+.3)*(1-seg(s,E2.firstRest-U.FILM*.62,E2.firstRest-U.FILM*.38));vis(u.e,o);
     if(o>0){const yi=E.o5(seg(s,st,st+.45));S(u.y,'clipPath',`inset(${f2((1-yi)*100)}% 0 0 0)`);S(u.y,'transform',`translateY(${f2((1-yi)*40)}px)`);light(u.hsp,seg(s,st+.15,st+.75));S(u.p,'opacity',String(f2(seg(s,st+.1,st+.4))))}
     const lo=i===cur&&!inWall?(o>0?.95:.5)*seg(s,st,st+.4):0;vis(u.lb,lo)});
-  vis(RAIL,inWall?0:1);RAIL.btns.forEach((b,i)=>b.classList.toggle('on',i===cur));
   /* film sheets */
   const h=.16;
   SLOTS.forEach((sl,k)=>{const shx=SH[k],U2=FILM_UI[k];const d=(s-sl.rest)/U.FILM;const E2=TL.eras[sl.era];
@@ -901,11 +925,36 @@ addEventListener('keydown',e=>{if(!THEATRE)return;if(e.key==='Escape')closeFilm(
   else if(e.key==='ArrowRight')thv.currentTime+=5;else if(e.key==='ArrowLeft')thv.currentTime-=5;else if(e.key==='m'||e.key==='M')$('thMute').click();
   else if(e.key==='Tab'){const f=[...TH.querySelectorAll('button,input')].filter(x=>x.offsetParent);const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
 
+/* ===================== chapters ===================== */
+function chapters(){  CH=[{name:t_('chIntro'),rail:t_('chIntro'),num:'',start:0,go:TL.open[1]*.96,sep:1}];
+  ERAS.forEach((Er,i)=>CH.push({name:L(Er.p).split('·').pop().trim(),rail:Er.year,num:Er.year,start:i===0?TL.bloom[0]:TL.eras[i-1].burn[0],go:TL.eras[i].intro[0]+U.INTRO*.5,sep:i===ERAS.length-1}));
+  CH.push({name:t_('chFilms'),rail:t_('chFilms'),num:'',start:TL.wall[0],go:TL.hold[0]+.15},{name:t_('chCraft'),rail:t_('chCraft'),num:'',start:TL.skills[0],go:TL.skRest[0]},{name:t_('chContact'),rail:t_('chContact'),num:'',start:TL.close[0],go:TL.close[1]})}
+/* moments worth landing on: a resting film, an era title, a skill, the wall, the end */
+function stops(){STOPS=[TL.open[1]*.96,TL.state[1]-.1,...TL.eras.map(e=>e.intro[0]+U.INTRO*.5),...SLOTS.map(x=>x.rest),TL.hold[0]+.3,...TL.skRest,TL.close[1]].sort((a,b)=>a-b)}
+function chapUI(s){let c=0;CH.forEach((x,i)=>{if(s>=x.start-.02)c=i});
+  if(c!==CHUR){CHUR=c;RAIL.btns.forEach((b,i)=>{b.classList.toggle('on',i===c);b.setAttribute('aria-current',i===c?'true':'false')});$('chapList').querySelectorAll('button').forEach((b,i)=>b.classList.toggle('on',i===c));
+    $('navChapT').textContent=CH[c].rail;$('navChap').setAttribute('aria-label',t_('eras')+': '+CH[c].name)}
+  vis(RAIL,seg(s,TL.open[1]+.1,TL.open[1]+.4));S($('prog').firstChild,'transform',`scaleX(${f2(clamp(s/(TL.total-.02))*1000)/1000})`)}
+/* a chapter jump is a cut: dip to ink, move, open again */
+function cutTo(u){if(!MOTION){jumpTo(u);return}const c=$('cut');c.animate([{opacity:0},{opacity:1}],{duration:170,easing:'ease-in',fill:'forwards'}).onfinish=()=>{jumpTo(u);c.animate([{opacity:1},{opacity:0}],{duration:420,easing:'ease-out',fill:'forwards'})}}
+function chapOpen(o){const ch=$('chap');if(o===!ch.hidden)return;ch.hidden=!o;$('navChap').setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';
+  if(o){ch.animate([{opacity:0},{opacity:1}],{duration:220});ch.querySelectorAll('li').forEach((li,i)=>li.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:380,delay:30+i*25,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));setTimeout(()=>{const b=ch.querySelector('button.on')||ch.querySelector('button');b&&b.focus()},60)}else $('navChap').focus()}
+$('navChap').onclick=()=>chapOpen($('chap').hidden);$('chap').onclick=e=>{if(e.target.id==='chap')chapOpen(false)};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('chap').hidden)chapOpen(false)});
+/* gentle settle: when scrolling stops just short of a moment, glide onto it */
+let SETTLE=0,TOUCHING=false,GLIDE=0;
+addEventListener('touchstart',()=>{TOUCHING=true;cancelAnimationFrame(GLIDE)},{passive:true});addEventListener('touchend',()=>{TOUCHING=false},{passive:true});
+['wheel','keydown','pointerdown'].forEach(t=>addEventListener(t,()=>cancelAnimationFrame(GLIDE),{passive:true}));
+addEventListener('scroll',()=>{clearTimeout(SETTLE);SETTLE=setTimeout(settle,190)},{passive:true});
+function settle(){if(THEATRE||TOUCHING||!$('chap').hidden||!STOPS.length)return;const u=scrollY/VH;let best=null;STOPS.forEach(x=>{if(best===null||Math.abs(x-u)<Math.abs(best-u))best=x});
+  const d=best-u;if(Math.abs(d)<.012||Math.abs(d)>.32)return;const from=scrollY,to=best*VH,t0=performance.now(),dur=MOTION?520:0;
+  (function f(n){const k=dur?Math.min(1,(n-t0)/dur):1,e=1-Math.pow(1-k,3);window.scrollTo(0,from+(to-from)*e);if(k<1)GLIDE=requestAnimationFrame(f)})(t0)}
+
 /* ===================== nav ===================== */
 function jumpTo(u){scrollTo({top:u*VH,behavior:'instant'});sy=u}
-$('navFilms').onclick=()=>jumpTo(TL.hold[0]+.15);$('navContact').onclick=()=>jumpTo(TL.close[1]);$('skip').onclick=e=>{e.preventDefault();jumpTo(TL.hold[0]+.15)};
+$('navFilms').onclick=()=>cutTo(TL.hold[0]+.15);$('navContact').onclick=()=>cutTo(TL.close[1]);$('skip').onclick=e=>{e.preventDefault();jumpTo(TL.hold[0]+.15)};
 
-$('navLang').onclick=()=>{LANG=LANG==='en'?'ar':'en';try{localStorage.setItem('btf-lang',LANG)}catch(e){}buildUI();if(THEATRE&&CURF){const t=thv.currentTime;fill(CURF);thv.currentTime=t}};
+$('navLang').onclick=()=>{LANG=LANG==='en'?'ar':'en';try{localStorage.setItem('btf-lang',LANG)}catch(e){}chapters();buildUI();if(THEATRE&&CURF){const t=thv.currentTime;fill(CURF);thv.currentTime=t}};
 /* resizing keeps the visitor on the same moment of the film; a phone's toolbar sliding (height only) is left alone so momentum scrolling isn't cut */
 addEventListener('resize',()=>{const u=scrollY/VH,ow=VW;measure();if(innerWidth!==ow){scrollTo({top:u*VH,behavior:'instant'});sy=u}});
 
