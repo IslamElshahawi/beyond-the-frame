@@ -97,7 +97,7 @@ html[dir=rtl] .hero .lt{left:auto;right:clamp(16px,4vw,56px)}
 .fb .cr,.fb .rm,.case,.lbl,.rail button,.carinfo .cr{text-shadow:0 1px 2px rgba(0,0,0,.7),0 0 18px rgba(0,0,0,.55)}
 html[lang=ar] .cr{font-family:var(--f-ar);letter-spacing:0;font-size:13px}
 .big{font:900 clamp(46px,7.4vw,124px)/.9 var(--f-display);letter-spacing:-.035em;margin:14px 0 22px;text-wrap:balance}
-html[lang=ar] .big,html[lang=ar] .ttl,html[lang=ar] .yr,html[lang=ar] .hl,html[lang=ar] .stm div,html[lang=ar] .cta div{font-family:var(--f-ar);letter-spacing:0}
+html[lang=ar] .big,html[lang=ar] .ttl,html[lang=ar] .yr,html[lang=ar] .hl,html[lang=ar] .stm div,html[lang=ar] .cta>div:not(.contact):not(.ct){font-family:var(--f-ar);letter-spacing:0}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;align-items:center;gap:10px;font:700 12.5px var(--f-body);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:13px 20px;pointer-events:auto}
 html[lang=ar] .btn{font-family:var(--f-ar);letter-spacing:0;font-size:14px}
@@ -203,7 +203,7 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
 
 /* close */
 .cta{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:8;padding:0 16px}
-.cta div{font:900 clamp(38px,6vw,100px)/1.02 var(--f-display);letter-spacing:-.03em;text-wrap:balance}
+.cta>div:not(.contact):not(.ct){font:900 clamp(38px,6vw,100px)/1.02 var(--f-display);letter-spacing:-.03em;text-wrap:balance}
 .cta .g{margin-top:4px}
 .cta .g{color:var(--gold)}
 .contact{display:grid;grid-template-columns:repeat(4,max-content);justify-content:center;grid-auto-rows:1fr;gap:10px;width:min(1000px,100%);margin:34px auto 0;text-align:start}
@@ -212,9 +212,9 @@ html[dir=rtl] .sk-tools{right:auto;left:clamp(16px,4vw,56px)}
 .cc .ic{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(243,239,231,.1);color:var(--paper)}
 .cc.main .ic{background:var(--gold);color:var(--ink)}
 .cc .tx{display:grid;min-width:0;gap:2px}
-.cc b{font:700 14.5px/1.2 var(--f-body)}
+.cc b{font:700 14.5px/1.2 var(--f-body);letter-spacing:.005em}
 html[lang=ar] .cc b{font-family:var(--f-ar)}
-.cc .tx span{font:500 11.5px/1.3 var(--f-mono);color:var(--dim);overflow-wrap:anywhere}
+.cc .tx span{font:500 11.5px/1.3 var(--f-mono);letter-spacing:.02em;color:var(--dim);overflow-wrap:anywhere}
 @media (min-width:1241px){.cc{padding-inline-end:18px}.cc .tx span{overflow-wrap:normal;white-space:nowrap}}
 html[dir=rtl] .cc .tx span{text-align:right}
 @media (max-width:520px){.contact{grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:auto!important;gap:8px!important;width:min(380px,100%)!important;margin-top:28px!important}.cta{top:46%}}
@@ -334,7 +334,7 @@ html[lang=ar] #th .nv button{font-family:var(--f-ar);letter-spacing:0;font-size:
    reads them, so swapping a film or a preview never touches the motion.
    ===================================================================== */
 const CONFIG={name:{en:'Islam Elshahawi',ar:'إسلام الشهاوي'},
-  contact:{whatsapp:'+201098687643', email:'islamelshahawi@gmail.com', linkedin:'https://www.linkedin.com/in/islam_elshahawi', mostaql:'https://mostaql.com/u/islam_elshahawi'}};
+  contact:{whatsapp:'+201098687643', email:'islamelshahawi@gmail.com', linkedin:'https://www.linkedin.com/in/islam-elshahawi', mostaql:'https://mostaql.com/u/islam_elshahawi'}};
 const FILMS={
  campaign_full_01:{kind:'concept',frame:'campaign_full_01_2',
   title:{en:'Welcome to the Future',ar:'مرحبًا بالمستقبل'},credit:{en:'Creative-AI internship · I led the team',ar:'برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق'},
