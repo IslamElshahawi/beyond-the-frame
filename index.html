@@ -112,7 +112,7 @@ html[dir=rtl] .hero .rt{right:auto;left:clamp(16px,4vw,56px);text-align:left}
 
 /* statement */
 .stm{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:6;padding:0 16px}
-.stm div{font:800 clamp(30px,5.2vw,86px)/1.02 var(--f-display);letter-spacing:-.025em}
+.stm div{font:800 clamp(30px,5.2vw,86px)/1.02 var(--f-display);letter-spacing:-.025em;text-shadow:0 2px 24px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.5)}
 
 /* eras */
 .era{position:fixed;inset:0;z-index:6}
@@ -528,11 +528,33 @@ function put(sh,o){const{w,h,x=0,y=0,z=0,rx=0,ry=0,rz=0,bend=0,tw=0,dim=0,op=1,g
   sh.m.position.set(x,-y,z);sh.m.rotation.set(-rx*D,-ry*D,-rz*D);sh.m.renderOrder=ro;sh.m.visible=op>.003;sh.used=true}
 
 /* plate: the era artwork as a full-screen world, with per-era treatments and the ink / burn transitions */
-const PLATE_FS=`precision highp float;uniform sampler2D tA,tB;uniform float aA,aB,uMix,uTime,uDim,uBias,uPush,uFxP,uLb;uniform int uMode,uFx;uniform vec2 uRes,uMouse;varying vec2 vUv;
+const PLATE_FS=`precision highp float;uniform sampler2D tA,tB;uniform float aA,aB,uMix,uTime,uDim,uBias,uPush,uFxP,uLb,uObs,uAInk;uniform int uMode,uFx;uniform vec2 uRes,uMouse;varying vec2 vUv;
 float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float n2(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
 float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=n2(p)*a;p*=2.03;a*=.5;}return v;}
 vec2 cov(vec2 uv,float ta,float sa,float push){vec2 s=sa>ta?vec2(1.,ta/sa):vec2(sa/ta,1.);return (uv-.5)*s/push+.5;}
+/* the dark room before the first era: a camera obscura. Light through a pinhole throws the first plate
+   onto the wall, upside down and soft; a dusty beam and slow amber / teal leaks colour the dark. */
+vec3 obsc(vec2 uv){vec3 c=vec3(.043,.043,.047);if(uObs<=.001)return c;float sa=uRes.x/uRes.y;
+ vec2 C=vec2(.5,.47)+uMouse*vec2(.01,-.008),p=(uv-C)*vec2(sa,1.);
+ /* the lens window on the far wall: an image, upside down and mirrored, slightly breathing */
+ vec2 R=vec2(min(.72,.46*sa),.36);float e=length(p/R);float ap=smoothstep(1.,.72,e);
+ vec2 pv=cov(vec2(1.-uv.x,1.-uv.y),aB,sa,1.18)+vec2(sin(uTime*.31),cos(uTime*.27))*.003;
+ vec3 im=texture2D(tB,pv,1.6).rgb;float l=dot(im,vec3(.3,.59,.11));im=mix(vec3(l),im,.8)*vec3(1.12,.96,.78);
+ float fl=.93+.07*n2(vec2(uTime*1.9,3.));float core=1.-.45*e*e;
+ c=mix(c,im*.62*core*fl,ap*uObs);
+ c+=vec3(1.,.7,.35)*smoothstep(1.25,.9,e)*(1.-ap)*.05*uObs;
+ /* the beam that throws it: a dusty cone from a pinhole above */
+ vec2 ph=vec2(.8,1.08),d=(uv-ph)*vec2(sa,1.),dc=(C-ph)*vec2(sa,1.);
+ float ang=atan(d.x,-d.y)-atan(dc.x,-dc.y),along=clamp(dot(d,normalize(dc))/length(dc),0.,1.);
+ float cone=smoothstep(.07+.2*along,0.,abs(ang))*smoothstep(1.05,.55,along);
+ float rays=.55+.45*n2(vec2(ang*60.,uTime*.25));c+=vec3(1.,.8,.55)*cone*rays*.13*uObs*fl;
+ vec2 q=uv*vec2(sa,1.)*70.+vec2(uTime*.35,-uTime*.9);float m=h(floor(q));float mote=smoothstep(.984,1.,m)*smoothstep(.5,.1,length(fract(q)-.5));
+ c+=vec3(1.,.88,.66)*mote*cone*.9*uObs;
+ /* colour in the dark: slow amber and teal leaks at the edges */
+ vec2 l1=vec2(.06+.05*sin(uTime*.21),.2+.07*cos(uTime*.17)),l2=vec2(.95+.04*cos(uTime*.19),.78+.06*sin(uTime*.23));
+ c+=vec3(1.,.42,.12)*exp(-length((uv-l1)*vec2(sa,1.))*3.)*.12*uObs;c+=vec3(.1,.6,.58)*exp(-length((uv-l2)*vec2(sa,1.))*3.4)*.08*uObs;
+ return c;}
 vec3 art(vec2 uv){vec3 c;
  if(uFx==2){float d=(1.-uFxP)*.035+.0012;c=vec3(texture2D(tB,uv+vec2(-d,d*.35),uBias).r,texture2D(tB,uv+vec2(0.,-d*.7),uBias).g,texture2D(tB,uv+vec2(d,d*.35),uBias).b);}
  else if(uFx==1){vec2 j=vec2(sin(uTime*23.)*.0008,sin(uTime*17.+1.)*.001);c=texture2D(tB,uv+j,uBias).rgb;float l=dot(c,vec3(.3,.59,.11));c=mix(c,vec3(l*1.08,l*.96,l*.78),.28);c*=.95+.05*sin(uTime*31.)*sin(uTime*13.);}
@@ -547,7 +569,7 @@ void main(){vec2 uv=vUv;float sa=uRes.x/uRes.y;
  if(uFx==3){float bar=clamp(.5-(uRes.x/2.39)/uRes.y*.5,0.,.45);float tb=mix(.3,bar,uFxP*uLb+(1.-uLb));float sd=(1.-uFxP)*.2*uLb;
   float m=step(tb,uv.y)*step(uv.y,1.-tb)*step(sd,uv.x)*step(uv.x,1.-sd);b=mix(vec3(.04,.035,.03),b,m);}
  vec3 col=b;
- if(uMode>0){vec3 a=uMode==1?vec3(.043,.043,.047):texture2D(tA,cov(uv,aA,sa,1.)).rgb;
+ if(uMode>0){vec3 a=(uMode==1||uAInk>.5)?obsc(uv):texture2D(tA,cov(uv,aA,sa,1.)).rgb;
   if(uMode==3){col=mix(a,b,uMix);}else{
   vec2 p=(uv-.5)*vec2(sa,1.);float r=length(p)/length(vec2(sa,1.)*.5);
   float n=fbm(p*(uMode==1?2.6:3.4)+7.)*.62+r*.95;float w=uMode==1?.07:.035;float th=mix(-.1,1.65,uMix);
@@ -558,7 +580,7 @@ void main(){vec2 uv=vUv;float sa=uRes.x/uRes.y;
  vec2 v=uv-.5;col*=1.-dot(v,v)*.55;
  col+=(h(uv*uRes+fract(uTime*7.)*97.)-.5)*.05;
  gl_FragColor=vec4(col,1.);}`;
-const plateU={tA:{value:BLACK},tB:{value:BLACK},aA:{value:1},aB:{value:1},uMix:{value:0},uTime:{value:0},uDim:{value:0},uBias:{value:0},uPush:{value:1},uFxP:{value:1},uLb:{value:1},
+const plateU={uObs:{value:0},uAInk:{value:0},tA:{value:BLACK},tB:{value:BLACK},aA:{value:1},aB:{value:1},uMix:{value:0},uTime:{value:0},uDim:{value:0},uBias:{value:0},uPush:{value:1},uFxP:{value:1},uLb:{value:1},
   uMode:{value:1},uFx:{value:0},uRes:{value:new THREE.Vector2(1,1)},uMouse:{value:new THREE.Vector2()}};
 pscene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),new THREE.ShaderMaterial({uniforms:plateU,vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}',fragmentShader:PLATE_FS,depthTest:false,depthWrite:false})));
 
@@ -712,7 +734,8 @@ function opening(s,av){
   vis(HINT,seg(tO,2.6,3.2)*(1-seg(s,.02,.12)));
   const sv=seg(s,s0+.25,s0+.5)*(1-seg(s,b0+.05,b0+.3));vis(STM.st,sv);light(STM.sp,seg(s,s0+.35,s1-.05));
   /* plate before the first era: dark */
-  if(s<b0){plateU.uMode.value=MOTION?1:3;plateU.uMix.value=0;setPlateB(0)}
+  if(s<b0){plateU.uMode.value=MOTION?1:3;plateU.uMix.value=0;setPlateB(0);plateU.tA.value=BLACK;plateU.uAInk.value=1;plateU.uDim.value=0;plateU.uBias.value=0;plateU.uPush.value=1;plateU.uFxP.value=1;
+    plateU.uObs.value=E.io3(seg(s,TL.open[1]-.2,s0+U.STATE*.6))}
 }
 
 /* ---- eras: art plates, film sheets, twist burns ---- */
@@ -729,8 +752,8 @@ function eras(s,av){
   /* presence of a film on screen → dim + defocus the art */
   let pres=0;SLOTS.forEach(sl=>{const d=(s-sl.rest)/U.FILM;pres=Math.max(pres,clamp(1.25-Math.abs(d)*1.4))});
   if(era.fill)pres*=1-seg(s,era.fill[0],era.fill[1]);
-  plateU.uMode.value=0;plateU.uMix.value=1;
-  if(cur===0&&s<TL.bloom[1]){plateU.uMode.value=MOTION?1:3;plateU.uMix.value=E.io3(seg(s,TL.bloom[0]+.15,TL.bloom[1]))}
+  plateU.uMode.value=0;plateU.uMix.value=1;plateU.uAInk.value=0;
+  if(cur===0&&s<TL.bloom[1]){plateU.uMode.value=MOTION?1:3;plateU.uAInk.value=1;plateU.uObs.value=1;plateU.uMix.value=E.io3(seg(s,TL.bloom[0]+.15,TL.bloom[1]))}
   if(cur>0){const pb=TL.eras[cur-1].burn;if(s<pb[1]){const lastSl=SLOTS.filter(x=>x.era===cur-1).pop();
     plateU.uMode.value=MOTION?2:3;plateU.uMix.value=E.io3(seg(s,pb[0],pb[1]));
     const o=vid('pv/'+lastSl.id+'.mp4');o.want=true;plateU.tA.value=ready(o)?o.t:img(FR(FILMS[lastSl.id].frame)).t;plateU.aA.value=9/16}}
