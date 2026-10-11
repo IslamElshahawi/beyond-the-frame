@@ -239,6 +239,9 @@ html[lang=ar] .foot b,html[lang=ar] .foot span{font-family:var(--f-ar);letter-sp
 #th .ctl button:hover{border-color:var(--gold)}
 #th .x{display:grid;place-items:center}
 #thBox{container-type:inline-size}
+/* landscape films (motion graphics) play wide */
+#th.wide .vb{aspect-ratio:16/9;height:auto;width:min(62vw,1080px,calc(78vh * 16 / 9))}#th.wide video{object-fit:contain}
+@media (max-width:860px){#th.wide .vb{width:100%}}
 /* language versions: an English demo re-cut next to the original Arabic film */
 #th .ver{position:absolute;top:12px;left:12px;z-index:2;display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 #th .ver[hidden]{display:none}
@@ -349,6 +352,11 @@ html[lang=ar] #th .nv button{font-family:var(--f-ar);letter-spacing:0;font-size:
 const CONFIG={name:{en:'Islam Elshahawi',ar:'إسلام الشهاوي'},
   contact:{whatsapp:'+201098687643', email:'islamelshahawi@gmail.com', linkedin:'https://www.linkedin.com/in/islam-elshahawi', mostaql:'https://mostaql.com/u/islam_elshahawi'}};
 const FILMS={
+ upax_full_01:{kind:'motion',frame:'upax_full_01_1',wide:true,
+  title:{en:'Run Everything. Together.',ar:'كل شيء، معًا.'},credit:{en:'UPAX · SaaS launch film · motion graphics',ar:'UPAX · فيلم إطلاق منصة SaaS · موشن جرافيك'},
+  brief:{en:'Introduce an agentic business platform in 75 seconds.',ar:'تقديم منصة أعمال تعمل بالوكلاء الأذكياء في 75 ثانية.'},
+  idea:{en:'Too many tools become one platform: bold kinetic type, live product UI and AI agents joining the org chart, cut to the voiceover.',ar:'كثرة الأدوات تتحول إلى منصة واحدة: نصوص حركية جريئة، وواجهات المنتج الحيّة، ووكلاء أذكياء ينضمون إلى الهيكل التنظيمي، على إيقاع التعليق الصوتي.'},
+  role:{en:'Motion graphics and edit.',ar:'الموشن جرافيك والمونتاج.'}},
  campaign_full_01:{kind:'concept',frame:'campaign_full_01_2',
   title:{en:'Welcome to the Future',ar:'مرحبًا بالمستقبل'},credit:{en:'Creative-AI internship · I led the team',ar:'برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق'},
   brief:{en:'Promote a creative-AI internship to young creators.',ar:'الترويج لبرنامج تدريب في الذكاء الاصطناعي الإبداعي لجمهور شاب.'},
@@ -438,20 +446,20 @@ const SKILLS=[
  {film:'vayqa_reel_01',t:{en:'Transitions & motion',ar:'الانتقالات والحركة'},d:{en:'One-shot transitions that become the idea, like the fan swipe that changes the outfit.',ar:'انتقالات من لقطة واحدة تصبح هي الفكرة، مثل تلويحة المروحة التي تغيّر الإطلالة.'}},
  {film:'vayqa_reel_02',t:{en:'Art direction',ar:'الإدارة الفنية'},d:{en:'A consistent visual world for each brand, from product and set to type.',ar:'عالم بصري متسق لكل علامة، من المنتج والديكور إلى الخط.'}}
 ];
-const WALL_ORDER=['campaign_full_01','calla_reel_02','vo_full_01','vayqa_reel_01','techcloud_full_01','calla_full_01','vavi_reel_01','vayqa_reel_02','riwaq_reel_02','misc_reel_01','riwaq_reel_01'];
+const WALL_ORDER=['campaign_full_01','calla_reel_02','vo_full_01','upax_full_01','vayqa_reel_01','techcloud_full_01','calla_full_01','vavi_reel_01','vayqa_reel_02','riwaq_reel_02','misc_reel_01','riwaq_reel_01'];
 const STRIP=[['campaign_full_01','campaign_full_01_2'],['calla_reel_02','calla_reel_02_1'],['vavi_reel_01','vavi_reel_01_2'],['calla_full_01','calla_full_01_2'],['techcloud_full_01','techcloud_full_01_2'],['HERO','campaign_full_01_1'],['vo_full_01','vo_full_01_1'],['vayqa_reel_01','vayqa_reel_01_2'],['riwaq_reel_02','riwaq_reel_02_2'],['misc_reel_01','misc_reel_01_2'],['vayqa_reel_02','vayqa_reel_02_2']];
 const HERO_I=5;
 const T={
  en:{role:'AI film director',films:'Films',contact:'Contact',motionOn:'Motion on',motionOff:'Motion off',lang:'ع',
-  heroCredit:'Creative-AI internship campaign · I led the team',heroTitle:'Welcome to the Future',watch:'Watch film',all:'All 11 films',sFilms:'films',sBrands:'Gulf brands',hint:'Scroll to open the frame',
+  heroCredit:'Creative-AI internship campaign · I led the team',heroTitle:'Welcome to the Future',watch:'Watch film',all:'All 12 films',sFilms:'films',sBrands:'Gulf brands',hint:'Scroll to open the frame',
   st:['Every image ever made','began as light','in a dark room.'],brief:'Brief',idea:'Idea',verEn:'English · demo',verOg:'Original · Arabic',verG:'Film version',verNote:'English demo version, re-voiced and subtitled for this portfolio to show the work to non-Arabic viewers. It is not the published ad; the original ran in Arabic.',role2:'My role',more:'More films',prev:'Previous',next:'Next',close:'Close',playPause:'Play or pause',seek:'Seek',sound:'Sound on or off',fsl:'Full screen',eras:'Chapters',chIntro:'Intro',chFilms:'Films',chCraft:'Craft',chContact:'Contact',keys:'Space · ← → · M · Esc',
-  wall:'Watch everything.',f:{all:'All 11',brand:'Brand films',ugc:'AI UGC',presenter:'AI presenters',concept:'Concepts'},
+  wall:'Watch everything.',f:{all:'All 12',brand:'Brand films',ugc:'AI UGC',presenter:'AI presenters',motion:'Motion graphics',concept:'Concepts'},
   skS:'What I do on every film',skH:'The craft',seen:'Seen in',tools:'Tools: DaVinci Resolve · AI image and video generation',
   c1:'There’s more to be seen.',c2:'Let’s make it.',wa:'WhatsApp',em:'Email',li:'LinkedIn',mq:'Mostaql',ct:'Contact details coming soon.',foot:'AI film director · Beyond the Frame',skip:'Skip to all films'},
  ar:{role:'مخرج أفلام بالذكاء الاصطناعي',films:'الأعمال',contact:'تواصل',motionOn:'الحركة: تعمل',motionOff:'الحركة: متوقفة',lang:'EN',
-  heroCredit:'حملة برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق',heroTitle:'مرحبًا بالمستقبل',watch:'شاهد الفيلم',all:'كل الأفلام (١١)',sFilms:'فيلمًا',sBrands:'علامات خليجية',hint:'مرّر لفتح الإطار',
+  heroCredit:'حملة برنامج تدريب في الذكاء الاصطناعي الإبداعي · قدتُ الفريق',heroTitle:'مرحبًا بالمستقبل',watch:'شاهد الفيلم',all:'كل الأفلام (١٢)',sFilms:'فيلمًا',sBrands:'علامات خليجية',hint:'مرّر لفتح الإطار',
   st:['كل صورة صُنعت يومًا','بدأت بضوء','في غرفة مظلمة.'],brief:'الموجز',idea:'الفكرة',verEn:'English · تجريبية',verOg:'الأصلية · عربي',verG:'نسخة الفيلم',verNote:'نسخة إنجليزية تجريبية أُعدّت لهذا المعرض فقط لعرض العمل لغير المتحدثين بالعربية، وليست الإعلان المنشور؛ الإعلان الأصلي نُشر بالعربية.',role2:'دوري',more:'أفلام أخرى',prev:'السابق',next:'التالي',close:'إغلاق',playPause:'تشغيل أو إيقاف',seek:'التقدّم',sound:'الصوت',fsl:'ملء الشاشة',eras:'الفصول',chIntro:'البداية',chFilms:'الأعمال',chCraft:'الحرفة',chContact:'تواصل',keys:'مسافة · ← → · M · Esc',
-  wall:'شاهد كل شيء.',f:{all:'الكل',brand:'أفلام العلامات',ugc:'UGC بالذكاء الاصطناعي',presenter:'مقدّمون',concept:'أفكار'},
+  wall:'شاهد كل شيء.',f:{all:'الكل',brand:'أفلام العلامات',ugc:'UGC بالذكاء الاصطناعي',presenter:'مقدّمون',motion:'موشن جرافيك',concept:'أفكار'},
   skS:'ما أقوم به في كل فيلم',skH:'الحرفة',seen:'في فيلم',tools:'الأدوات: دافنشي ريزولف · توليد الصور والفيديو بالذكاء الاصطناعي',
   c1:'هناك المزيد لنراه.',c2:'لنصنعه معًا.',wa:'واتساب',em:'البريد',li:'لينكدإن',mq:'مستقل',ct:'بيانات التواصل قريبًا.',foot:'مخرج أفلام بالذكاء الاصطناعي · ما وراء الإطار',skip:'انتقل إلى كل الأفلام'}
 };
@@ -636,7 +644,7 @@ function buildUI(){
   const lt=el('div','lt',h);const cr=el('div','cr',lt,t_('heroCredit'));const bg=el('h1','big',lt);const hs=letters(bg,t_('heroTitle'));
   const bt=el('div','btns',lt);const w=el('button','btn w',bt,ICON.play+'<span>'+t_('watch')+'</span>');w.type='button';w.onclick=()=>openFilm('campaign_full_01');
   const a=el('button','btn o',bt,t_('all'));a.type='button';a.onclick=()=>cutTo(TL.hold[0]+.15);
-  const rt=el('div','rt',h,`<div class="stat"><b>11</b><span class="cr">${t_('sFilms')}</span></div><div class="stat"><b>5</b><span class="cr">${t_('sBrands')}</span></div>`);
+  const rt=el('div','rt',h,`<div class="stat"><b>12</b><span class="cr">${t_('sFilms')}</span></div><div class="stat"><b>6</b><span class="cr">${t_('sBrands')}</span></div>`);
   HERO={h,cr,hs,bt,rt,sh:h.querySelector('.shade')};
   HINT=el('div','hint mono',ui,t_('hint'));
   /* statement */
@@ -651,7 +659,7 @@ function buildUI(){
     const cs=el('div','case ui',ui,`<div><span>${t_('brief')}</span>${L(F.brief)}</div><div><span>${t_('role2')}</span>${L(F.role)}</div>`);return{fb,cr,sp,pl,cs}});
   /* wall */
   const wu=el('section','wallui ui',ui);const wh=el('h2','',wu);const wsp=letters(wh,t_('wall'));const ch=el('div','chips',wu);
-  const chips=['all','brand','ugc','presenter','concept'].map(k=>{const b=el('button','',ch,t_('f')[k]);b.type='button';b.dataset.k=k;b.onclick=()=>{const br=b.getBoundingClientRect(),cr=ch.getBoundingClientRect();glideX(ch,ch.scrollLeft+((br.left+br.width/2)-(cr.left+cr.width/2)));FILTER=k;CAR.target=0;chips.forEach(c=>c.classList.toggle('on',c.dataset.k===k))};return b});
+  const chips=['all','brand','ugc','presenter','motion','concept'].map(k=>{const b=el('button','',ch,t_('f')[k]);b.type='button';b.dataset.k=k;b.onclick=()=>{const br=b.getBoundingClientRect(),cr=ch.getBoundingClientRect();glideX(ch,ch.scrollLeft+((br.left+br.width/2)-(cr.left+cr.width/2)));FILTER=k;CAR.target=0;chips.forEach(c=>c.classList.toggle('on',c.dataset.k===k))};return b});
   chips.forEach(c=>c.classList.toggle('on',c.dataset.k===FILTER));
   /* phone slider caption: counter, title, credit, watch */
   const ci=el('div','carinfo',wu);const cr0=el('div','crow',ci);const pv=el('button','arr',cr0,ICON.left);pv.type='button';pv.setAttribute('aria-label',LANG==='ar'?t_('next'):t_('prev'));pv.onclick=()=>carStep(LANG==='ar'?1:-1);const cnt=el('div','cnt mono',cr0);const nx=el('button','arr',cr0,ICON.right);nx.type='button';nx.setAttribute('aria-label',LANG==='ar'?t_('prev'):t_('next'));nx.onclick=()=>carStep(LANG==='ar'?-1:1);const ctt=el('div','ctitle',ci);const ccr=el('div','cr',ci);
@@ -938,7 +946,7 @@ function verUI(){const has=CURF&&EN_CUT.has(CURF),v=has?verOf(CURF):'og',g=$('th
 $('thVer').querySelectorAll('button').forEach(b=>b.onclick=()=>{if(!CURF||verOf(CURF)===b.dataset.v)return;VER=b.dataset.v;const t=thv.currentTime,play=!thv.paused;
   thv.src=filmSrc(CURF);thv.addEventListener('loadedmetadata',()=>{thv.currentTime=t;if(play)thv.play().catch(()=>{})},{once:true});verUI()});
 function fmt(t){t=Math.max(0,t||0);return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
-function fill(id){CURF=id;$('thSeek').value=0;$('thSeek').style.setProperty('--p','0%');const F=FILMS[id];$('thCredit').textContent=L(F.credit);$('thTitle').textContent=L(F.title);$('thBrief').textContent=L(F.brief);$('thIdea').textContent=L(F.idea);$('thRole').textContent=L(F.role);
+function fill(id){CURF=id;$('thSeek').value=0;$('thSeek').style.setProperty('--p','0%');const F=FILMS[id];TH.classList.toggle('wide',!!F.wide);$('thCredit').textContent=L(F.credit);$('thTitle').textContent=L(F.title);$('thBrief').textContent=L(F.brief);$('thIdea').textContent=L(F.idea);$('thRole').textContent=L(F.role);
   thv.poster=FR(F.frame);thv.src=filmSrc(id);thv.muted=false;thv.currentTime=0;verUI();const p=thv.play();if(p&&p.catch)p.catch(()=>{thv.muted=true;thv.play().catch(()=>{})});
   const m=$('thMore');m.innerHTML='';WALL_ORDER.forEach(k=>{const b=el('button',k===id?'on':'',m);b.type='button';b.style.backgroundImage=`url(${FR(FILMS[k].frame)})`;b.setAttribute('aria-label',L(FILMS[k].title));b.onclick=()=>fill(k)})}
 function openFilm(id,card){lastFocus=document.activeElement;THEATRE=true;TH.hidden=false;fill(id);document.body.style.overflow='hidden';
